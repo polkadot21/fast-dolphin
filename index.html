@@ -85,6 +85,7 @@
     }
 
     .jumbotron {
+      background-color: white;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -206,15 +207,15 @@
       opacity: 0.7;
     }
 
-    .pricing .btn {
-      font-size: 80%;
-      border-radius: 5rem;
-      letter-spacing: .1rem;
-      font-weight: bold;
-      padding: 1rem;
-      opacity: 0.7;
-      transition: all 0.2s;
-    }
+    /*.pricing .btn {*/
+    /*  font-size: 80%;*/
+    /*  border-radius: 5rem;*/
+    /*  letter-spacing: .1rem;*/
+    /*  font-weight: bold;*/
+    /*  padding: 1rem;*/
+    /*  opacity: 0.7;*/
+    /*  transition: all 0.2s;*/
+    /*}*/
 
     /* Hover Effects on Card */
 
@@ -270,49 +271,150 @@
       background-color: #6d6d6d;
     }
 
+    .navbar-nav .nav-link {
+      color: black;
+    }
+
+    .navbar-light .navbar-nav .nav-link {
+    color: rgba(0, 0, 0, 0.9);
+    }
+
+    .navbar-light .navbar-nav .nav-link:hover, .navbar-light .navbar-nav .nav-link:focus {
+      color: rgba(0, 0, 0, 0.7);
+    }
+
+    .navbar-light .navbar-nav .nav-link.disabled {
+      color: rgba(0, 0, 0, 0.3);
+    }
+
+    .nav-link.disabled {
+      color: gray;
+      pointer-events: none; /* Disables the link */
+    }
+
+    .soon-text {
+      font-size: 8px;
+      margin-left: 5px;
+      vertical-align: super;
+    }
+
+    .custom-header {
+      width: 100%;
+    }
+
+    .custom-header .navbar-brand {
+      display: inline-flex;
+      align-items: center;
+    }
+
+    .custom-header .navbar-nav {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .custom-header .navbar-nav .nav-item {
+      flex-grow: 1;
+      text-align: center;
+    }
+
+    .custom-header .navbar-nav .nav-item:last-child {
+      text-align: right;
+    }
+
+    .nav-link.disabled sup {
+      font-size: 0.7em;
+      vertical-align: super;
+      margin-left: 5px;
+    }
+
+
+   .showcase a {
+      background-color: #919191;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+  }
+
+
+
+  .showcase a:hover {
+    background-color: #6d6d6d;
+  }
+
+
+   .pricing a {
+      background-color: #919191;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+  }
+
+  .pricing a:hover {
+    background-color: #6d6d6d;
+  }
+
   </style>
 </head>
 <body>
 
 <!--   Masthead-->
 
-<header>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
-    <div class="container">
-      <a class="navbar-brand" href="/">
-        <img src="static/img/logo_2.0.png" alt="Быстрый Дельфин" class="logo">
-        Быстрый Дельфин
-      </a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link" href="#aboutus">О нас</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#place">Место занятий</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#services">Услуги</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#team">Команда</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#testimonials">Отзывы</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#contacts">Контакты</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
+<header class="custom-header">
+   <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+        <div class="row w-100 align-items-center">
+          <div class="col-6 col-md-3">
+            <a class="navbar-brand" href="/">
+              <img src="static/img/logo_2.0.png" alt="Быстрый Дельфин" class="logo">
+              Быстрый Дельфин
+            </a>
+          </div>
+          <div class="col-6 col-md-6 text-center">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+              <ul class="navbar-nav">
+                <li class="nav-item">
+                  <a class="nav-link" href="#aboutus">О нас</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#place">Место занятий</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#services">Услуги</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#team">Команда</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#testimonials">Отзывы</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#contacts">Контакты</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md-3 text-right">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link disabled" href="#">Войти<span class="soon-text">скоро</span></a>
+              </li>
+            </ul>
+          </div>
+        </div>
+    </nav>
+
+
+
   <div class="jumbotron jumbotron-fluid">
     <div class="container">
-      <h1 class="display-4">Наша школа плавания - "Быстрый Дельфин"</h1>
+      <h1 class="display-4">Школа плавания - "Быстрый Дельфин"</h1>
       <p class="lead">Мы поможем вам освоить плавание и достичь лучших результатов в кратчайшие сроки. Присоединяйтесь к нам прямо сейчас!</p>
     </div>
   </div>
@@ -345,7 +447,7 @@
             сообщества и предлагаем обучение плаванию самого высокого качества. Присоединяйтесь к нам в бассейне и
             позвольте нам помочь вам достичь ваших целей в плавании!
           </p>
-          <a href="https://forms.gle/JRrPDaxx8FXeELN6A" class="btn btn-block btn-primary text-uppercase mt-4 w-50">Записаться!</a>
+            <a href="https://forms.gle/JRrPDaxx8FXeELN6A" class="btn btn-primary text-uppercase mt-4 w-50">Записаться!</a>
         </div>
       </div>
     </div>
@@ -438,7 +540,7 @@
           <div class="testimonial-item mx-auto mb-5 mb-lg-0">
             <img class="img-fluid rounded-circle mb-3" src="static/img/natalya.jpg" alt="научиться плавать">
             <h5>Наталья</h5>
-            <p class="font-weight-light mb-0">Магистр педагогики РГУФК <br>
+            <p class="font-weight-light mb-0">Магистр спорта<br>
               Руководитель
             </p>
           </div>
@@ -447,8 +549,9 @@
           <div class="testimonial-item mx-auto mb-5 mb-lg-0">
             <img class="img-fluid rounded-circle mb-3" src="static/img/Evgenii.jpg" alt="научиться плавать">
             <h5>Евгений</h5>
-            <p class="font-weight-light mb-0">МС по подводному спорту<br>
-              Тренер
+            <p class="font-weight-light mb-0">Мастер спорта по подводному спорту<br>
+              Кандидат педагогических наук <br>
+              Методист
             </p>
           </div>
         </div>
@@ -456,7 +559,7 @@
           <div class="testimonial-item mx-auto mb-5 mb-lg-0">
             <img class="img-fluid rounded-circle mb-3" src="static/img/Alex.jpg" alt="научиться плавать">
             <h5>Александр</h5>
-            <p class="font-weight-light mb-0">МС по плаванию <br>
+            <p class="font-weight-light mb-0">Мастер спорта по плаванию <br>
              Тренер
             </p>
           </div>
