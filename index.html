@@ -140,7 +140,7 @@
     }
 
     footer {
-    background-color: white;
+    background-color: #F8F9FA;
     }
 
     footer a {
@@ -156,6 +156,7 @@
     footer p {
       margin: 0;
       margin-top: 10px;
+      margin-bottom: 10px;
     }
 
 
@@ -357,6 +358,30 @@
   .pricing a:hover {
     background-color: #6d6d6d;
   }
+
+  .soon-icon a {
+      color: #ccc;
+    }
+
+    .soon-icon a:hover {
+      color: #ccc;
+    }
+
+    .soon-icon i {
+      opacity: 0.5;
+    }
+
+    .soon-icon:hover i {
+      opacity: 0.8;
+    }
+
+     .soon-icon .soon-text {
+      font-size: 8px;
+      margin-left: 5px;
+      vertical-align: -0.8em;
+    }
+
+
 
   </style>
 </head>
@@ -624,24 +649,48 @@
   </section>
 
   <!-- Footer -->
-  <footer>
+<footer>
+  <div class="container text-center">
+    <div class="row">
+      <div class="col-12 mb-4">
+        <p class="mb-3">Подписывайтесь на нас в социальных сетях!</p>
+        <ul class="list-inline social-icons">
+          <li class="list-inline-item mr-4">
+            <a href="https://vk.com/fast_dolphin">
+              <i class="fab fa-vk fa-3x"></i>
+            </a>
+          </li>
+          <li class="list-inline-item mr-4">
+            <a href="https://www.instagram.com/fastdolphin_swimming/">
+              <i class="fab fa-instagram fa-3x"></i>
+            </a>
+          </li>
+          <li class="list-inline-item soon-icon">
+            <a href="https://t.me/your_telegram_page">
+              <i class="fab fa-telegram fa-3x"></i><span class="soon-text">скоро</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="container justify-content-center">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link" href="tos">Политика конфиденциальности</a>
+            <a href="tos">Политика конфиденциальности</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="rules">Правила школы</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="workout">Дневник тренировок</a>
+            <a href="rules">Правила школы</a>
           </li>
         </ul>
       </div>
     </nav>
-    <p class="text-muted small mb-4 mb-lg-0 text-center">&copy; Сайт школы плавания "Быстрый Дельфин" 2023. Все права защищены.</p>
-  </footer>
+    <p class="text-muted small mt-4">&copy; 2012-2023 <a href="http://www.fast-dolphin.com/">"Быстрый Дельфин"</a><br>
+        Все права защищены.</p>
+  </div>
+</footer>
+
+
 </body>
 </html>
 
