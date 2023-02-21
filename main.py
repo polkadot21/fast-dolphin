@@ -25,14 +25,14 @@ async def render_index(request: Request):
     return templates.TemplateResponse("index.html", {"request": request})
 
 
-@app.get("/tos", response_class=HTMLResponse)
+@app.get("/privacy", response_class=HTMLResponse)
 async def render_tos(request: Request):
-    return templates.TemplateResponse("tos.html", {"request": request})
+    return templates.TemplateResponse("privacy.html", {"request": request})
 
 
 @app.get("/rules", response_class=HTMLResponse)
 async def render_rules(request: Request):
-    return templates.TemplateResponse("rules.html", {"request": request})
+    return templates.TemplateResponse("rules_2.html", {"request": request})
 
 
 @app.get("/login", response_class=HTMLResponse)
@@ -48,3 +48,8 @@ async def render_account(request: Request):
 @app.get("/workout", response_class=HTMLResponse)
 async def render_workout_planner(request: Request):
     return templates.TemplateResponse("workout.html", {"request": request})
+
+
+@app.get("/about-us", response_class=HTMLResponse)
+async def render_about_us(request: Request):
+    return templates.TemplateResponse("aboutus.html", {"request": request})
