@@ -62,3 +62,7 @@ async def render_login(request: Request):
 @app.get("/signup", response_class=HTMLResponse)
 async def render_signup(request: Request):
     return templates.TemplateResponse("signup.html", {"request": request})
+
+@app.get("/password_reset", response_class=HTMLResponse)
+async def render_reset_password(request: Request):
+    return templates.TemplateResponse("reset-password.html", {"request": request})
