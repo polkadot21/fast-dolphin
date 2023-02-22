@@ -53,3 +53,12 @@ async def render_workout_planner(request: Request):
 @app.get("/about-us", response_class=HTMLResponse)
 async def render_about_us(request: Request):
     return templates.TemplateResponse("aboutus.html", {"request": request})
+
+@app.get("/login", response_class=HTMLResponse)
+async def render_login(request: Request):
+    return templates.TemplateResponse("login.html", {"request": request})
+
+
+@app.get("/signup", response_class=HTMLResponse)
+async def render_signup(request: Request):
+    return templates.TemplateResponse("signup.html", {"request": request})
