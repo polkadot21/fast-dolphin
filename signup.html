@@ -81,7 +81,7 @@
   <style>
 
     header {
-    background-color: white;
+      background-color: white;
     }
 
     .jumbotron {
@@ -95,22 +95,22 @@
 
     header h1 {
 
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      height: 100%;
     }
 
     header p {
 
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      height: 100%;
     }
 
     nav {
@@ -140,8 +140,9 @@
     }
 
     footer {
-     background-color: #F8F9FA;
-     padding: 25px 0;
+      background-color: #F8F9FA;
+      padding: 25px 0;
+      margin-top: 100px;
       margin-bottom: 0; /* Set margin-bottom to 0 */
     }
 
@@ -159,9 +160,7 @@
     }
 
     footer p {
-      margin: 0;
-      margin-top: 10px;
-      margin-bottom: 10px;
+      margin: 10px 0;
     }
 
 
@@ -228,6 +227,12 @@
     .btn-primary {
       background-color: #919191; /* set the button color to a gray metallic color */
       border-color: #919191; /* set the border color to match the button color */
+      margin-top: 10px;
+    }
+
+    .btn-primary:hover {
+      background-color: gray; /* set the button color to a gray metallic color */
+      /*border-color: #919191; !* set the border color to match the button color *!*/
     }
 
     .testimonials {
@@ -298,12 +303,6 @@
 
     .soon-text {
       font-size: 8px;
-      margin-left: 5px;
-      vertical-align: super;
-    }
-
-    .soon-text-h2 {
-      font-size: 16px;
       margin-left: 5px;
       vertical-align: super;
     }
@@ -405,13 +404,69 @@
       padding-left: 0.25em;
     }
 
-    .showcase {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
+
+    #signup-form {
+      width: 400px;
+      margin: 50px auto; /* adjust the margin value as needed */
+      background-color: white;
+      border: 1px solid #CCCCCC;
+      border-radius: 5px;
+      padding: 20px;
+      box-shadow: 0px 0px 10px #CCCCCC;
     }
 
+
+    #signup-form h1 {
+          text-align: center;
+          color: black;
+        }
+
+    #signup-form a {
+      color: #919191;
+      text-decoration: none;
+      margin: 0 10px;
+      float: right;
+    }
+
+    #signup-form a:hover {
+      color: gray;
+      text-decoration: none;
+    }
+
+
+    #signup-form label {
+      display: block;
+      margin-top: 10px;
+      color: black;
+    }
+
+    #signup-form input[type=text], input[type=password] {
+      width: 100%;
+      padding: 12px 20px;
+      margin: 8px 0;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+
+    .center-heading {
+      text-align: center;
+    }
+
+    .center-text {
+      text-align: center;
+      margin-top: 10px;
+    }
+
+    .center-text a {
+      color: #919191;
+      text-decoration: none;
+    }
+
+    .center-text a:hover {
+      color: gray;
+      text-decoration: none;
+    }
 
   </style>
 </head>
@@ -464,10 +519,22 @@
   </div>
 </header>
 
-    <!-- Section for the signup table -->
-        <!--Here the signup table should be shown-->
-    <!--The section ends here-->
+  <h1 class="center-heading">Зарегистрироваться</h1>
+  <form id="signup-form">
+    <label for="email">Эл. почта:</label>
+    <input type="text" id="email" name="email"><br>
+    <label for="firstName">Имя:</label>
+    <input type="text" id="firstName" name="firstName"><br>
+    <label for="surName">Фамилия:</label>
+    <input type="text" id="surName" name="surName"><br>
+    <label for="password">Пароль:</label>
+    <input type="password" id="password" name="password"><br>
+    <button class="btn btn-block btn-primary text-uppercase" type="submit">Зарегистрироваться</button>
+  </form>
 
+  <div class="center-text">
+    <p>Уже есть аккаунт? <a href="/login">Войти!</a></p>
+  </div>
 
   <!-- Footer -->
 <footer>
