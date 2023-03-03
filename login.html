@@ -81,7 +81,7 @@
   <style>
 
     header {
-    background-color: white;
+      background-color: white;
     }
 
     .jumbotron {
@@ -95,22 +95,22 @@
 
     header h1 {
 
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      height: 100%;
     }
 
     header p {
 
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      height: 100%;
     }
 
     nav {
@@ -140,8 +140,9 @@
     }
 
     footer {
-     background-color: #F8F9FA;
-     padding: 25px 0;
+      background-color: #F8F9FA;
+      padding: 25px 0;
+      margin-top: 100px;
       margin-bottom: 0; /* Set margin-bottom to 0 */
     }
 
@@ -159,9 +160,7 @@
     }
 
     footer p {
-      margin: 0;
-      margin-top: 10px;
-      margin-bottom: 10px;
+      margin: 10px 0;
     }
 
 
@@ -228,6 +227,12 @@
     .btn-primary {
       background-color: #919191; /* set the button color to a gray metallic color */
       border-color: #919191; /* set the border color to match the button color */
+      margin-top: 10px;
+    }
+
+    .btn-primary:hover {
+      background-color: gray; /* set the button color to a gray metallic color */
+      /*border-color: #919191; !* set the border color to match the button color *!*/
     }
 
     .testimonials {
@@ -302,12 +307,6 @@
       vertical-align: super;
     }
 
-    .soon-text-h2 {
-      font-size: 16px;
-      margin-left: 5px;
-      vertical-align: super;
-    }
-
     .custom-header {
       width: 100%;
     }
@@ -348,9 +347,9 @@
       cursor: pointer;
   }
 
-  .showcase a:hover {
-    background-color: #6d6d6d;
-  }
+    .showcase a:hover {
+      background-color: #6d6d6d;
+    }
 
 
    .pricing a {
@@ -405,13 +404,66 @@
       padding-left: 0.25em;
     }
 
-    .showcase {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
+    #login-form {
+      width: 400px;
+      margin: 50px auto; /* adjust the margin value as needed */
+      background-color: white;
+      border: 1px solid #CCCCCC;
+      border-radius: 5px;
+      padding: 20px;
+      box-shadow: 0px 0px 10px #CCCCCC;
     }
 
+    #login-form h1 {
+      text-align: center;
+      color: black;
+    }
+
+    #login-form a {
+      color: #919191;
+      text-decoration: none;
+      margin: 0 10px;
+      float: right;
+    }
+
+    #login-form a:hover {
+      color: gray;
+      text-decoration: none;
+    }
+
+    #login-form label {
+      display: block;
+      margin-top: 10px;
+      color: black;
+    }
+
+    #login-form input[type=text], input[type=password] {
+      width: 100%;
+      padding: 12px 20px;
+      margin: 8px 0;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+
+    .center-heading {
+      text-align: center;
+    }
+
+    .center-text {
+      text-align: center;
+      margin-top: 10px;
+    }
+
+    .center-text a {
+      color: #919191;
+      text-decoration: none;
+    }
+
+    .center-text a:hover {
+      color: gray;
+      text-decoration: none;
+    }
 
   </style>
 </head>
@@ -435,14 +487,13 @@
             <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
               <ul class="navbar-nav">
                 <li class="nav-item">
-                  <a class="nav-link disabled" href="#">Войти<span class="soon-text">скоро</span></a>
+                  <a class="nav-link disabled" href="/signup">Зарегистрироваться<span class="soon-text">скоро</span></a>
                 </li>
               </ul>
             </div>
           </div>
         </div>
     </nav>
-
 
 
   <div class="jumbotron jumbotron-fluid">
@@ -464,21 +515,22 @@
   </div>
 </header>
 
+  <h1 class="center-heading">Войти</h1>
+  <form id="login-form">
+    <label for="username">Эл. почта:</label>
+    <input type="text" id="username" name="username"><br>
+    <label for="password">Пароль:</label>
+    <input type="password" id="password" name="password"><br>
+      <a href="/password_reset">Забыли пароль?</a><br> <!-- Add this line -->
+    <button class="btn btn-block btn-primary text-uppercase" type="submit">Войти</button>
+  </form>
 
-  <!-- Image Showcases -->
-  <section id="privacy" class="showcase">
-    <div class="container">
-      <div class="row">
-        <div class="col-xl-9 mx-auto text-center">
-          <iframe src="https://drive.google.com/file/d/1Htyi4mhkVWqlOSkoPGmkODgvMi9p7EcM/preview" width="700" height="700"></iframe>
-        </div>
-      </div>
-    </div>
-  </section>
+  <div class="center-text">
+    <p>Еще нет аккаунта? <a href="/signup">Зарегистрироваться!</a></p>
+  </div>
 
-  <!-- Footer -->
 <footer>
-   <div class="container text-center">
+  <div class="container text-center">
     <div class="row">
       <div class="col-12 mb-4">
         <p class="mb-3">Подписывайтесь на нас в социальных сетях!</p>
