@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+                          <!DOCTYPE html>
 <html lang="ru">
 
 <head>
@@ -77,6 +77,8 @@
     });
 
   </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/showdown@1.9.1/dist/showdown.min.js"></script>
 
   <style>
 
@@ -465,6 +467,17 @@
       text-decoration: none;
     }
 
+    /* Style the div */
+    #markdown-container {
+      margin: auto;
+      max-width: 600px;
+      padding: 20px;
+      /*background-color: #f0f0f0;*/
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      text-align: left; /* Align the text to the left */
+    }
+
   </style>
 </head>
 <body>
@@ -486,7 +499,7 @@
             </button>
          </div>
         <div class="col-3 col-md-3 text-center">
-          <a class="nav-link disabled" href="/signup">Зарегистрироваться<span class="soon-text">скоро</span></a>
+          <a class="nav-link" href="/logout">Выйти</a>
         </div>
       </div>
     </nav>
@@ -511,19 +524,53 @@
   </div>
 </header>
 
-  <h1 class="center-heading">Войти</h1>
-  <form id="login-form">
-    <label for="username">Эл. почта:</label>
-    <input type="text" id="username" name="username"><br>
-    <label for="password">Пароль:</label>
-    <input type="password" id="password" name="password"><br>
-      <a href="/password_reset">Забыли пароль?</a><br> <!-- Add this line -->
-    <button class="btn btn-primary text-uppercase" type="submit" style="width: 100%; color: white;">Войти</button>
-  </form>
+<div id="markdown-container" class="center-text"></div>
+    <script>
+  // Define the Markdown text
+  var markdownText = '# Мой аккаунт\n\n' +
+                      'Привет, <username>! ' +
+                      '👋🏽\n\n' +
+                      'Вот ваши варианты:\n\n## ' +
+                      '📝 Личные данные\n\n' +
+                      'Здесь вы можете просматривать и редактировать свою личную информацию.\n\n' +
+                      '## <a href="/training-plans" target="_blank">🏋️‍♀️ Тренировочные планы</a>\n\n' +
+                      'Ознакомьтесь с нашим выбором тренировочных планов и выберите тот, который подходит вам. \n\n' +
+                      '## <a href="/logout" target="_blank">🔒 Выйти</a>';
 
-  <div class="center-text">
-    <p>Еще нет аккаунта? <a href="/signup">Зарегистрироваться!</a></p>
-  </div>
+  // Create a new converter object
+  var converter = new showdown.Converter();
+
+  // Convert the Markdown text to HTML
+  var htmlText = converter.makeHtml(markdownText);
+
+  // Get the access token from local storage
+  var accessToken = localStorage.getItem('access_token');
+
+  // Make a GET request to the /v1/users/ endpoint with the Authorization header
+  fetch('http://127.0.0.1:8000/v1/users/', {
+    method: 'GET',
+    headers: {
+      'Accept': 'application/json',
+      'Authorization': 'Bearer ' + accessToken
+    }
+  })
+  .then(response => response.json())
+  .then(data => {
+    // Get the user's first name and surname from the response data
+    var firstName = data.Resources[0].FirstName;
+    var surname = data.Resources[0].Surname;
+
+    // Replace the <username> placeholder in the Markdown text with the user's name
+    htmlText = htmlText.replace('<username>', firstName + ' ' + surname);
+
+    // Set the inner HTML of the container div to the HTML text
+    document.getElementById('markdown-container').innerHTML = htmlText;
+  })
+  .catch(error => {
+    console.error('Error:', error);
+  });
+</script>
+
 
 <footer>
   <div class="container text-center">
@@ -565,8 +612,6 @@
     <p class="text-muted small mt-4">&copy; 2012-2023 <a href="http://www.fast-dolphin.com/">"Быстрый Дельфин"</a><br>
         Все права защищены.</p>
   </div>
-  <script src="static/js/login.js"></script>
-
 </footer>
 </body>
 </html>
