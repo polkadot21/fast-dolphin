@@ -466,16 +466,80 @@
       text-decoration: none;
     }
 
-    /* Style the div */
+    /*!* Style the div *!*/
+    /*#markdown-container {*/
+    /*  margin: auto;*/
+    /*  max-width: 600px;*/
+    /*  padding: 20px;*/
+    /*  !*background-color: #f0f0f0;*!*/
+    /*  border-radius: 5px;*/
+    /*  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);*/
+    /*  text-align: left; !* Align the text to the left *!*/
+    /*}*/
+
     #markdown-container {
-      margin: auto;
-      max-width: 600px;
-      padding: 20px;
-      /*background-color: #f0f0f0;*/
-      border-radius: 5px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-      text-align: left; /* Align the text to the left */
-    }
+    width: 400px;
+    margin: 50px auto;
+    background-color: white;
+    border: 1px solid #CCCCCC;
+    border-radius: 5px;
+    padding: 20px;
+    box-shadow: 0px 0px 10px #CCCCCC;
+  }
+
+  #markdown-container h1 {
+    text-align: center;
+    color: black;
+  }
+
+  #markdown-container form {
+    margin-top: 20px;
+  }
+
+  #markdown-container input[type=number], input[type=text] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+
+  #markdown-container input[type=submit] {
+    background-color: #919191;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+  }
+
+  #markdown-container input[type=submit]:hover {
+    background-color: gray;
+  }
+
+  #markdown-container select {
+    display: block;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  #markdown-container label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 18px;
+  }
+
+  #markdown-container label + select {
+    margin-top: 10px;
+  }
+
 
   </style>
 </head>
@@ -527,13 +591,13 @@
     <script>
       // Define the Markdown text
       var markdownText = '#  🏋️‍♀️ Тренировочные планы\n\n' +
-                          'Здесь вы можете запросить тренировочный план, введя параметры ниже:\n\n' +
-                          '<form action="/query-plans">\n' +
-                          '  Неделя: <input type="number" name="week" min="1" max="52"><br>\n' +
-                          '  Уровень: <input type="text" name="level"><br>\n' +
-                          '  День: <input type="text" name="day"><br>\n' +
-                          '  <input type="submit" value="Отправить">\n' +
-                          '</form>';
+                   'Здесь вы можете запросить тренировочный план, введя параметры ниже:\n\n' +
+                   '<form action="/query-plans">\n' +
+                   '  Неделя: <input type="number" name="week" min="1" max="52"><br>\n' +
+                   '  Уровень: <select name="level"><option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option></select><br>\n' +
+                   '  День: <select name="day"><option value="A">A</option><option value="B">B</option></select><br>\n' +
+                   '  <input type="submit" value="Отправить">\n' +
+                   '</form>';
 
       // Create a new converter object
       var converter = new showdown.Converter();
