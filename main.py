@@ -54,6 +54,7 @@ async def render_workout_planner(request: Request):
 async def render_about_us(request: Request):
     return templates.TemplateResponse("aboutus.html", {"request": request})
 
+
 @app.get("/login", response_class=HTMLResponse)
 async def render_login(request: Request):
     return templates.TemplateResponse("login.html", {"request": request})
@@ -63,6 +64,12 @@ async def render_login(request: Request):
 async def render_signup(request: Request):
     return templates.TemplateResponse("signup.html", {"request": request})
 
+
 @app.get("/password_reset", response_class=HTMLResponse)
 async def render_reset_password(request: Request):
     return templates.TemplateResponse("reset-password.html", {"request": request})
+
+
+@app.get("/{full_path:path}")
+async def catch_all(request: Request, full_path: str):
+    return templates.TemplateResponse("404.html", {"request": request})
