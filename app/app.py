@@ -1,4 +1,4 @@
-from fastapi import FastAPI, Request
+from fastapi import FastAPI, Request, status
 from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
@@ -70,6 +70,8 @@ async def render_reset_password(request: Request):
     return templates.TemplateResponse("reset-password.html", {"request": request})
 
 
-@app.get("/{full_path:path}")
-async def catch_all(request: Request, full_path: str):
-    return templates.TemplateResponse("404.html", {"request": request})
+@app.get("/{full_path:path}", response_class=HTMLResponse)
+async def catch_all(request: Request):
+    return templates.TemplateResponse("404.html",
+                                      {"request": request},
+                                      status_code=status.HTTP_404_NOT_FOUND)
