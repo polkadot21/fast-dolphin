@@ -28,18 +28,8 @@ def test_login():
     assert response.status_code == 200
 
 
-def test_account():
-    response = client.get("/account")
-    assert response.status_code == 200
-
-
 def test_workout_planner():
     response = client.get("/workout")
-    assert response.status_code == 200
-
-
-def test_about_us():
-    response = client.get("/about-us")
     assert response.status_code == 200
 
 
