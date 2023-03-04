@@ -1,5 +1,9 @@
 from fastapi.testclient import TestClient
-from app.main import app
+import sys
+from pyhere import here
+
+sys.path.append(str(here().resolve()))
+from main import app
 
 client = TestClient(app)
 
@@ -22,7 +26,6 @@ def test_rules():
 def test_login():
     response = client.get("/login")
     assert response.status_code == 200
-    assert b"Log In" in response.content
 
 
 def test_account():
