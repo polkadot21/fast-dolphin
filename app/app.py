@@ -45,6 +45,11 @@ async def render_account(request: Request):
     return templates.TemplateResponse("account.html", {"request": request})
 
 
+@app.get("/training-plans", response_class=HTMLResponse)
+async def render_account(request: Request):
+    return templates.TemplateResponse("training-plans.html", {"request": request})
+
+
 @app.get("/workout", response_class=HTMLResponse)
 async def render_workout_planner(request: Request):
     return templates.TemplateResponse("workout.html", {"request": request})
