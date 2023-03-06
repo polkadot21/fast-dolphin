@@ -525,51 +525,63 @@
 </header>
 
 <div id="markdown-container" class="center-text"></div>
-    <script>
-  // Define the Markdown text
-  var markdownText = '# Мой аккаунт\n\n' +
-                      'Привет, <username>! ' +
-                      '👋🏽\n\n' +
-                      'Вот ваши варианты:\n\n## ' +
-                      '📝 Личные данные\n\n' +
-                      'Здесь вы можете просматривать и редактировать свою личную информацию.\n\n' +
-                      '## <a href="/training-plans" target="_blank">🏋️‍♀️ Тренировочные планы</a>\n\n' +
-                      'Ознакомьтесь с нашим выбором тренировочных планов и выберите тот, который подходит вам. \n\n' +
-                      '## <a href="/logout" target="_blank">🔒 Выйти</a>';
+  <script>
+    // Define the Markdown text
+    var markdownText = '# Мой аккаунт\n\n' +
+                        'Привет, <username>! ' +
+                        '👋🏽\n\n' +
+                        'Вот ваши варианты:\n\n## ' +
+                        '📝 Личные данные\n\n' +
+                        'Здесь вы можете просматривать и редактировать свою личную информацию.\n\n' +
+                        '## <a href="/training-plans" target="_blank">🏋️‍♀️ Тренировочные планы</a>\n\n' +
+                        'Ознакомьтесь с нашим выбором тренировочных планов и выберите тот, который подходит вам. \n\n' +
+                        '## <a href="/logout" target="_blank">🔒 Выйти</a>';
 
-  // Create a new converter object
-  var converter = new showdown.Converter();
+    // Create a new converter object
+    var converter = new showdown.Converter();
 
-  // Convert the Markdown text to HTML
-  var htmlText = converter.makeHtml(markdownText);
+    // Convert the Markdown text to HTML
+    var htmlText = converter.makeHtml(markdownText);
 
-  // Get the access token from local storage
-  var accessToken = localStorage.getItem('access_token');
+    // Get the access token from local storage
+    var accessToken = localStorage.getItem('access_token');
 
-  // Make a GET request to the /v1/users/ endpoint with the Authorization header
-  fetch('http://127.0.0.1:8000/v1/users/', {
-    method: 'GET',
-    headers: {
-      'Accept': 'application/json',
-      'Authorization': 'Bearer ' + accessToken
+    if (!accessToken) {
+      // Redirect to login page if access token is not present in local storage
+      window.location.href = '/login';
+    } else {
+      // Make a GET request to the /v1/users/ endpoint with the Authorization header
+      fetch('http://127.0.0.1:8000/v1/users/', {
+        method: 'GET',
+        headers: {
+          'Accept': 'application/json',
+          'Authorization': 'Bearer ' + accessToken
+        }
+      })
+      .then(response => {
+        if (response.status === 401) {
+          // Redirect to login page if the response status code is 401 (unauthorized)
+          window.location.href = '/login';
+        }
+        return response.json();
+      })
+      .then(data => {
+        // Get the user's first name and surname from the response data
+        var firstName = data.Resources[0].FirstName;
+        var surname = data.Resources[0].Surname;
+
+        // Replace the <username> placeholder in the Markdown text with the user's name
+        htmlText = htmlText.replace('<username>', firstName + ' ' + surname);
+
+        // Set the inner HTML of the container div to the HTML text
+        document.getElementById('markdown-container').innerHTML = htmlText;
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
     }
-  })
-  .then(response => response.json())
-  .then(data => {
-    // Get the user's first name and surname from the response data
-    var firstName = data.Resources[0].FirstName;
-    var surname = data.Resources[0].Surname;
+  </script>
 
-    // Replace the <username> placeholder in the Markdown text with the user's name
-    htmlText = htmlText.replace('<username>', firstName + ' ' + surname);
-
-    // Set the inner HTML of the container div to the HTML text
-    document.getElementById('markdown-container').innerHTML = htmlText;
-  })
-  .catch(error => {
-    console.error('Error:', error);
-  });
-</script>
 
 
 <footer>
