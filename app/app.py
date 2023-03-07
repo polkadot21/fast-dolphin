@@ -12,12 +12,13 @@ app.mount("/static", StaticFiles(directory="static"), name="static")
 
 templates = Jinja2Templates(directory="./")
 
-app.add_middleware(CORSMiddleware,
-                   allow_origins=CorsConstants.DEV_ORIGINS,
-                   allow_headers=CorsConstants.DEV_HEADERS,
-                   allow_methods=CorsConstants.METHODS,
-                   allow_credentials=True,
-                   )
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=CorsConstants.DEV_ORIGINS,
+    allow_headers=CorsConstants.DEV_HEADERS,
+    allow_methods=CorsConstants.METHODS,
+    allow_credentials=True,
+)
 
 
 @app.get("/", response_class=HTMLResponse)
@@ -77,6 +78,6 @@ async def render_reset_password(request: Request):
 
 @app.get("/{full_path:path}", response_class=HTMLResponse)
 async def catch_all(request: Request):
-    return templates.TemplateResponse("404.html",
-                                      {"request": request},
-                                      status_code=status.HTTP_404_NOT_FOUND)
+    return templates.TemplateResponse(
+        "404.html", {"request": request}, status_code=status.HTTP_404_NOT_FOUND
+    )
