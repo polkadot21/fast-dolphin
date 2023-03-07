@@ -466,80 +466,170 @@
       text-decoration: none;
     }
 
-    /*!* Style the div *!*/
-    /*#markdown-container {*/
-    /*  margin: auto;*/
-    /*  max-width: 600px;*/
-    /*  padding: 20px;*/
-    /*  !*background-color: #f0f0f0;*!*/
-    /*  border-radius: 5px;*/
-    /*  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);*/
-    /*  text-align: left; !* Align the text to the left *!*/
-    /*}*/
+    /*worked*/
 
-    #markdown-container {
+  /*#markdown-container {*/
+  /*  width: 400px;*/
+  /*  margin: 50px auto;*/
+  /*  background-color: white;*/
+  /*  border: 1px solid #CCCCCC;*/
+  /*  border-radius: 5px;*/
+  /*  padding: 20px;*/
+  /*  box-shadow: 0px 0px 10px #CCCCCC;*/
+  /*}*/
+
+  /*#markdown-container h1 {*/
+  /*  text-align: center;*/
+  /*  color: black;*/
+  /*}*/
+
+  /*#markdown-container form {*/
+  /*  margin-top: 20px;*/
+  /*}*/
+
+  /*#markdown-container input[type=number], input[type=text] {*/
+  /*  width: 100%;*/
+  /*  padding: 12px 20px;*/
+  /*  margin: 8px 0;*/
+  /*  border: 1px solid #ccc;*/
+  /*  border-radius: 4px;*/
+  /*  box-sizing: border-box;*/
+  /*}*/
+
+  /*#markdown-container input[type=submit] {*/
+  /*  background-color: #919191;*/
+  /*  color: white;*/
+  /*  border: none;*/
+  /*  padding: 12px 20px;*/
+  /*  border-radius: 4px;*/
+  /*  cursor: pointer;*/
+  /*  width: 100%;*/
+  /*}*/
+
+  /*#markdown-container input[type=submit]:hover {*/
+  /*  background-color: gray;*/
+  /*}*/
+
+  /*#markdown-container select {*/
+  /*  display: block;*/
+  /*  margin-bottom: 10px;*/
+  /*  padding: 10px;*/
+  /*  border-radius: 5px;*/
+  /*  border: 1px solid #ccc;*/
+  /*  font-size: 16px;*/
+  /*  width: 100%;*/
+  /*  box-sizing: border-box;*/
+  /*}*/
+
+  /*#markdown-container label {*/
+  /*  display: block;*/
+  /*  margin-bottom: 5px;*/
+  /*  font-size: 18px;*/
+  /*}*/
+
+  /*#markdown-container label + select {*/
+  /*  margin-top: 10px;*/
+  /*}*/
+
+  #markdown-container {
     width: 400px;
-    margin: 50px auto;
-    background-color: white;
-    border: 1px solid #CCCCCC;
-    border-radius: 5px;
+    margin: 50px auto; /* adjust the margin value as needed */
     padding: 20px;
+    border-radius: 5px;
+    text-align: left;
+    background-color: white;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 1s;
+    min-height: 430px;
+    max-width: 600px;
     box-shadow: 0px 0px 10px #CCCCCC;
+
+    }
+
+  #markdown-container.flipped {
+    transform: rotateY(180deg);
   }
 
-  #markdown-container h1 {
-    text-align: center;
-    color: black;
-  }
-
-  #markdown-container form {
-    margin-top: 20px;
-  }
-
-  #markdown-container input[type=number], input[type=text] {
+  #markdown-container .front,
+  #markdown-container .back {
+    padding: 20px;
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+  }
+
+  #markdown-container .back {
+    background-color: white;
+    transform: rotateY(180deg);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  #arrow-icon {
+    font-size: 1.2em;
+    margin: 10px 0 0 10px; /* top, right, bottom, left */
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+  #return-text {
+    display: inline-block;
+    margin: 0;
+    position: absolute;
+    top: 12px;
+    left: 40px;
+  }
+
+
+  #query-form {
+    display: flex;
+    flex-direction: column;
+  }
+
+  #query-form label {
+    font-size: 18px;
+    margin: 8px 0;
+
+  }
+
+  #query-form input[type=number],
+  #query-form input[type=text],
+  #query-form select {
     padding: 12px 20px;
     margin: 8px 0;
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
+    font-size: 18px;
   }
 
-  #markdown-container input[type=submit] {
+  #query-form input[type=submit] {
     background-color: #919191;
     color: white;
     border: none;
     padding: 12px 20px;
     border-radius: 4px;
     cursor: pointer;
-    width: 100%;
-  }
-
-  #markdown-container input[type=submit]:hover {
-    background-color: gray;
-  }
-
-  #markdown-container select {
-    display: block;
-    margin-bottom: 10px;
-    padding: 10px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    font-size: 16px;
-    width: 100%;
-    box-sizing: border-box;
-  }
-
-  #markdown-container label {
-    display: block;
-    margin-bottom: 5px;
+    margin: 8px 0;
     font-size: 18px;
   }
 
-  #markdown-container label + select {
-    margin-top: 10px;
+
+  #query-form input[type=submit]:hover {
+    background-color: gray;
   }
 
+  .back span:last-child {
+    margin-left: auto;
+  }
 
   </style>
 </head>
@@ -587,55 +677,57 @@
   </div>
 </header>
 
-<div id="markdown-container" class="center-text"></div>
-  <script>
-    // Define the Markdown text
-    var markdownText = '#  🏋️‍♀️ Тренировочные планы\n\n' +
-                     'Здесь вы можете запросить тренировочный план, введя параметры ниже:\n\n' +
-                     '<form action="/query-plans">\n' +
-                     '  Неделя: <input type="number" name="week" min="1" max="52"><br>\n' +
-                     '  Уровень: <select name="level"><option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option></select><br>\n' +
-                     '  День: <select name="day"><option value="A">A</option><option value="B">B</option></select><br>\n' +
-                     '  <input type="submit" value="Отправить">\n' +
-                     '</form>';
+<!-- Add an ID to the markdown container div -->
+<h1 class="center-heading">🏋️‍♀️ Тренировочные планы</h1>
+<div id="markdown-container" class="center-text">
+  <div class="front">
+    <form id="query-form">
+      <label for="week">Неделя:</label>
+      <input type="number" id="week" name="week" min="1" max="52">
 
-    // Create a new converter object
-    var converter = new showdown.Converter();
+      <label for="level">Уровень:</label>
+      <select id="level" name="level">
+        <option value="0">0</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+      </select>
 
-    // Convert the Markdown text to HTML
-    var htmlText = converter.makeHtml(markdownText);
+      <label for="day">День:</label>
+      <select id="day" name="day">
+        <option value="A">A</option>
+        <option value="B">B</option>
+      </select>
 
-    // Get the access token from local storage
-    var accessToken = localStorage.getItem('access_token');
+      <input type="submit" value="Отправить">
+    </form>
+  </div>
+  <div class="back">
+    <span id="arrow-icon">👈</span>
+    <span id="return-text">Выберите новый план</span>
+  </div>
+</div>
 
-    if (!accessToken) {
-      // Redirect to login page if access token is not present in local storage
-      window.location.href = '/login';
-    } else {
-      // Make a GET request to the /v1/users/ endpoint with the Authorization header
-      fetch('http://127.0.0.1:8000/v1/users/', {
-        method: 'GET',
-        headers: {
-          'Accept': 'application/json',
-          'Authorization': 'Bearer ' + accessToken
-        }
-      })
-      .then(response => {
-        if (response.status === 401) {
-          // Redirect to login page if the response status code is 401 (unauthorized)
-          window.location.href = '/login';
-        }
-        return response.json();
-      })
-      .then(data => {
-        // Set the inner HTML of the container div to the HTML text
-        document.getElementById('markdown-container').innerHTML = htmlText;
-      })
-      .catch(error => {
-        console.error('Error:', error);
-      });
-    }
-  </script>
+<script>
+  // Add an event listener to the submit button
+  document.getElementById('query-form').addEventListener('submit', function(event) {
+    // Prevent the default form submission behavior
+    event.preventDefault();
+
+    // Flip the container div by adding the "flipped" class
+    document.getElementById('markdown-container').classList.add('flipped');
+  });
+
+    // Add an event listener to the arrow icon and return text on the backside of the paper
+  document.getElementById('arrow-icon').addEventListener('click', toggleContainer);
+  document.getElementById('return-text').addEventListener('click', toggleContainer);
+
+  function toggleContainer() {
+    // Flip the container div back by removing the "flipped" class
+    document.getElementById('markdown-container').classList.toggle('flipped');
+  }
+
+</script>
 
 
 <footer>
