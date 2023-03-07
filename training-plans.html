@@ -588,29 +588,54 @@
 </header>
 
 <div id="markdown-container" class="center-text"></div>
-    <script>
-      // Define the Markdown text
-      var markdownText = '#  🏋️‍♀️ Тренировочные планы\n\n' +
-                   'Здесь вы можете запросить тренировочный план, введя параметры ниже:\n\n' +
-                   '<form action="/query-plans">\n' +
-                   '  Неделя: <input type="number" name="week" min="1" max="52"><br>\n' +
-                   '  Уровень: <select name="level"><option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option></select><br>\n' +
-                   '  День: <select name="day"><option value="A">A</option><option value="B">B</option></select><br>\n' +
-                   '  <input type="submit" value="Отправить">\n' +
-                   '</form>';
+  <script>
+    // Define the Markdown text
+    var markdownText = '#  🏋️‍♀️ Тренировочные планы\n\n' +
+                     'Здесь вы можете запросить тренировочный план, введя параметры ниже:\n\n' +
+                     '<form action="/query-plans">\n' +
+                     '  Неделя: <input type="number" name="week" min="1" max="52"><br>\n' +
+                     '  Уровень: <select name="level"><option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option></select><br>\n' +
+                     '  День: <select name="day"><option value="A">A</option><option value="B">B</option></select><br>\n' +
+                     '  <input type="submit" value="Отправить">\n' +
+                     '</form>';
 
-      // Create a new converter object
-      var converter = new showdown.Converter();
+    // Create a new converter object
+    var converter = new showdown.Converter();
 
-      // Convert the Markdown text to HTML
-      var htmlText = converter.makeHtml(markdownText);
+    // Convert the Markdown text to HTML
+    var htmlText = converter.makeHtml(markdownText);
 
-      // Log the HTML text to the console for debugging
-      console.log(htmlText);
+    // Get the access token from local storage
+    var accessToken = localStorage.getItem('access_token');
 
-      // Set the inner HTML of the container div to the HTML text
-      document.getElementById('markdown-container').innerHTML = htmlText;
-    </script>
+    if (!accessToken) {
+      // Redirect to login page if access token is not present in local storage
+      window.location.href = '/login';
+    } else {
+      // Make a GET request to the /v1/users/ endpoint with the Authorization header
+      fetch('http://127.0.0.1:8000/v1/users/', {
+        method: 'GET',
+        headers: {
+          'Accept': 'application/json',
+          'Authorization': 'Bearer ' + accessToken
+        }
+      })
+      .then(response => {
+        if (response.status === 401) {
+          // Redirect to login page if the response status code is 401 (unauthorized)
+          window.location.href = '/login';
+        }
+        return response.json();
+      })
+      .then(data => {
+        // Set the inner HTML of the container div to the HTML text
+        document.getElementById('markdown-container').innerHTML = htmlText;
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
+    }
+  </script>
 
 
 <footer>
