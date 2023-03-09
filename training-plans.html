@@ -691,26 +691,53 @@
 
       let exercises = data.Resources[0].Exercises
 
-      var trainingPlanText = `#### Уровень: ${level}, Неделя: ${week}, День: ${day}\n\n`;
+      var trainingPlanText = `##### Уровень плавания: ${level}\n\n` +
+                            `##### Календарная неделя: ${week}\n\n` +
+                            `##### Тренировочный день: ${day}\n\n` +
+                            ` -------------------------------\n\n`;
+
 
      // Add each exercise to the training plan text
       for (let i = 0; i < exercises.length; i++) {
         let exercise = exercises[i];
+        // Volume or Time
         let volume = exercise.Volume;
         let volumeUnits = exercise.VolumeUnits;
         let time = exercise.Time;
         let timeUnits = exercise.TimeUnits;
+
+        // Stroke
         let stroke = exercise.Stroke;
-        let comments = exercise.Comments;
         let legs = exercise.Legs;
         let arms = exercise.Arms;
+        let speed = exercise.Speed;
+        let effort_level = 'easy';
+
+        // Equipment
+        let paddles = exercise.Equipment.Paddles;
+        let kickboard = exercise.Equipment.Kickboard;
+        let pullBuoy = exercise.Equipment.PullBuoy;
+        let snorkel = exercise.Equipment.Snorkel;
+        let otherEquipment = exercise.Equipment.Other;
+
+        // Comments
+        let comments = exercise.Comments;
+
         let index = i + 1;
         let coreTask = '';
 
+        if (speed === 3 || speed === 4) {
+          effort_level = 'moderate';
+        }
+
+        if (speed === 5 || speed === 6) {
+          effort_level = 'fast';
+        }
+
         if (volume === 0) {
-          coreTask += `${index}: ${time} ${timeUnits} ${stroke}`;
+          coreTask += `\n${index}: ${time}${timeUnits} ${stroke} ${effort_level}\n`;
         } else {
-          coreTask += `${index}: ${volume} ${volumeUnits} ${stroke}`;
+          coreTask += `\n${index}: ${volume}${volumeUnits} ${stroke} ${effort_level}\n`;
         }
 
         if (legs) {
@@ -721,14 +748,34 @@
           coreTask += ' arms';
         }
 
+        if (paddles) {
+          coreTask += ' paddles';
+        }
+
+        if (kickboard) {
+          coreTask += ' kickboard';
+        }
+
+        if (pullBuoy) {
+          coreTask += ' pull buoy';
+        }
+
+        if (snorkel) {
+          coreTask += ' snorkel';
+        }
+
+        if (otherEquipment !== '' && otherEquipment !== 'string') {
+          coreTask += ' ' + otherEquipmentl;
+        }
+
         if (comments) {
-          coreTask += ' ' + comments;
+          coreTask += '\n ' + comments + '\n';
         }
 
         trainingPlanText += coreTask + "\n\n";
-
       }
 
+      trainingPlanText +=  ` -------------------------------\n\n`;
       trainingPlanText += '<a onClick="toggleContainer()">👈 Выбрать новый план</a>'
 
       // Create a new converter object
