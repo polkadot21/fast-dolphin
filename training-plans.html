@@ -649,11 +649,45 @@
     // Prevent the default form submission behavior
     event.preventDefault();
 
-    // Flip the container div by adding the "flipped" class
-    document.getElementById('markdown-container').classList.add('flipped');
+    // Get the input values
+    const level = document.getElementById('level').value;
+    const week = document.getElementById('week').value;
+    const day = document.getElementById('day').value;
+
+    // Get the access token from localStorage
+    const accessToken = localStorage.getItem('access_token');
+
+    // Call the endpoint with the access token and input values
+    fetch(`http://127.0.0.1:8000/v1/training-plan/?level=${level}&week=${week}&day=${day}`, {
+      method: 'GET',
+      headers: {
+        'Authorization': `Bearer ${accessToken}`,
+        'Accept': 'application/json'
+      }
+    })
+    .then(response => {
+      if (response.ok) {
+        // Flip the container div by adding the "flipped" class
+        document.getElementById('markdown-container').classList.add('flipped');
+      } else if (response.status === 404) {
+        // Show "Not found" pop field
+        alert('Not found');
+      } else if (response.status === 401) {
+        // Redirect to the login page
+        window.location.href = '/login';
+      } else if (response.status === 422) {
+        // Show "Wrong input" alert message
+        alert('Wrong input');
+      }
+    })
+    .catch(error => {
+      console.error(error);
+      // Show error message to user
+      alert('An error occurred');
+    });
   });
 
-    // Add an event listener to the arrow icon and return text on the backside of the paper
+  // Add an event listener to the arrow icon and return text on the backside of the paper
   document.getElementById('arrow-icon').addEventListener('click', toggleContainer);
   document.getElementById('return-text').addEventListener('click', toggleContainer);
 
@@ -661,7 +695,6 @@
     // Flip the container div back by removing the "flipped" class
     document.getElementById('markdown-container').classList.toggle('flipped');
   }
-
 </script>
 
 
