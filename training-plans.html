@@ -669,7 +669,9 @@
     .then(response => {
       if (response.ok) {
         // Flip the container div by adding the "flipped" class
-        document.getElementById('markdown-container').classList.add('flipped');
+        // document.getElementById('markdown-container').classList.add('flipped');
+        return response.json();
+
       } else if (response.status === 404) {
         // Show "Not found" pop field
         alert('Not found');
@@ -681,6 +683,66 @@
         alert('Wrong input');
       }
     })
+    .then(data => {
+      // Format the response data as a markdown document
+      let level = data.Resources[0].Level
+      let week = data.Resources[0].Week
+      let day = data.Resources[0].Day
+
+      let exercises = data.Resources[0].Exercises
+
+      var trainingPlanText = `#### Уровень: ${level}, Неделя: ${week}, День: ${day}\n\n`;
+
+     // Add each exercise to the training plan text
+      for (let i = 0; i < exercises.length; i++) {
+        let exercise = exercises[i];
+        let volume = exercise.Volume;
+        let volumeUnits = exercise.VolumeUnits;
+        let time = exercise.Time;
+        let timeUnits = exercise.TimeUnits;
+        let stroke = exercise.Stroke;
+        let comments = exercise.Comments;
+        let legs = exercise.Legs;
+        let arms = exercise.Arms;
+        let index = i + 1;
+        let coreTask = '';
+
+        if (volume === 0) {
+          coreTask += `${index}: ${time} ${timeUnits} ${stroke}`;
+        } else {
+          coreTask += `${index}: ${volume} ${volumeUnits} ${stroke}`;
+        }
+
+        if (legs) {
+          coreTask += ' legs';
+        }
+
+        if (arms) {
+          coreTask += ' arms';
+        }
+
+        if (comments) {
+          coreTask += ' ' + comments;
+        }
+
+        trainingPlanText += coreTask + "\n\n";
+
+      }
+
+      trainingPlanText += '<a onClick="toggleContainer()">👈 Выбрать новый план</a>'
+
+      // Create a new converter object
+      var converter = new showdown.Converter();
+      // Convert the Markdown text to HTML
+      var htmlText = converter.makeHtml(trainingPlanText);
+
+      var markdownContainer = document.getElementById('markdown-container');
+      var markdownBack = markdownContainer.querySelector('.back');
+      markdownBack.innerHTML = htmlText;
+
+      markdownContainer.classList.add('flipped');
+    })
+
     .catch(error => {
       console.error(error);
       // Show error message to user
