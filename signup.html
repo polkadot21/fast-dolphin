@@ -28,55 +28,8 @@
   <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-  <script>
-   // Function to set a cookie
-    function setCookie(name, value, days) {
-      var expires = "";
-      if (days) {
-        var date = new Date();
-        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-        expires = "; expires=" + date.toUTCString();
-      }
-      document.cookie = name + "=" + (value || "") + expires + "; path=/";
-    }
+  <script src="static/js/cookies.js"></script>
 
-    // Function to get a cookie
-    function getCookie(name) {
-      var nameEQ = name + "=";
-      var ca = document.cookie.split(';');
-      for (var i = 0; i < ca.length; i++) {
-        var c = ca[i];
-        while (c.charAt(0) === ' ') c = c.substring(1, c.length);
-        if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
-      }
-      return null;
-    }
-
-    // Function to show the cookies consent pop-up if the user has not yet accepted the cookies
-    function showCookiesPopup() {
-      if (!getCookie('cookiesAccepted')) {
-        document.getElementById('cookiesPopup').style.display = 'block';
-      }
-    }
-
-    // Function to accept the cookies and hide the cookies consent pop-up
-    function acceptCookies() {
-      setCookie('cookiesAccepted', true, 365);
-      document.getElementById('cookiesPopup').style.display = 'none';
-    }
-
-    // Function to reject the cookies and hide the cookies consent pop-up
-    function rejectCookies() {
-      setCookie('cookiesAccepted', false, 365);
-      document.getElementById('cookiesPopup').style.display = 'none';
-    }
-
-    // Show the cookies consent pop-up when the page is loaded
-    document.addEventListener('DOMContentLoaded', function() {
-      showCookiesPopup();
-    });
-
-  </script>
 
   <style>
 
