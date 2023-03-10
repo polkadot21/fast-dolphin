@@ -400,12 +400,6 @@
       border: 1px solid #ccc;
       border-radius: 4px;
       box-sizing: border-box;
-      /*padding: 12px 20px;*/
-      /*margin: 8px 0;*/
-      /*border: 1px solid #ccc;*/
-      /*border-radius: 4px;*/
-      /*box-sizing: border-box;*/
-      /*font-size: 18px;*/
     }
 
     #request-form input[type=text], input[type=password] {
@@ -415,6 +409,52 @@
       border: 1px solid #ccc;
       border-radius: 4px;
       box-sizing: border-box;
+    }
+
+    .full-phone-number {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+    }
+
+    .full-phone-number select {
+      flex: 1;
+      margin-right: 8px;
+    }
+
+    .full-phone-number option {
+      background-color: #fff;
+      color: #333;
+    }
+
+    .full-phone-number option:before {
+      content: "";
+      display: inline-block;
+      width: 24px;
+      /*height: 16px;*/
+      margin-right: 8px;
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+
+    .full-phone-number option[value="+7"]:before {
+      background-image: url('https://flagsapi.com/RU/flat/24.png');
+    }
+
+    .full-phone-number option[value="+49"]:before {
+      background-image: url('https://www.countryflags.io/de/flat/24.png');
+    }
+
+    .full-phone-number option[value="+86"]:before {
+      background-image: url('https://www.countryflags.io/cn/flat/24.png');
+    }
+
+    .full-phone-number input[type="text"] {
+      flex: 3;
+    }
+
+    #phone-error {
+      margin-top: 8px;
     }
 
     .center-heading {
@@ -501,7 +541,18 @@
   <label for="kidSurName">Фамилия ребенка:</label>
     <input type="text" id="kidSurName" name="kidSurName" required><br>
   <label for="phoneNumber">Номер телефона:</label>
-    <input type="text" id="phoneNumber" name="phoneNumber" required><br>
+  <div class="full-phone-number">
+    <select id="countryCode" name="countryCode" onchange="updateCountryCode()">
+      <option value="+7" data-country="Россия" data-code="7" data-flag="https://flagsapi.com/RU/flat/24.png">+7</option>
+      <option value="+49" data-country="Германия" data-code="49" data-flag="https://www.countryflags.io/de/flat/24.png">+49</option>
+      <option value="+86" data-country="Китай" data-code="86" data-flag="https://www.countryflags.io/cn/flat/24.png">+86</option>
+    <!-- Add more countries as needed -->
+    </select>
+    <input type="text" id="phoneNumber" name="phoneNumber" required onkeyup="formatPhoneNumber(this)"><br>
+    <div id="phone-error" style="color: red;"></div>
+  </div>
+
+
   <label for="swimmingLevel">Уровень плавания:</label>
     <input type="text" id="swimmingLevel" name="swimmingLevel" required><br>
 
@@ -517,8 +568,13 @@
         <option value=false>Нет</option>
       </select>
 
-<!--  <label for="password">Пароль:</label>-->
-<!--  <input type="password" id="password" name="password" required><br>-->
+  <label for="hasTakenCourse">На какие занятия Вы хотите записаться?</label>
+      <select id="lessonType" name="lessonType">
+        <option value=oneTimeAWeekTraining>Групповые, 1 раз в неделю</option>
+        <option value=twoTimesAWeekTraining>Групповые, 2 раза в неделю</option>
+        <option value=personalTraining>Индивидуальные</option>
+      </select>
+
   <div class="form-check">
     <input class="form-check-input" type="checkbox" value="" id="terms-of-service" name="terms-of-service" required>
     <label class="form-check-label" for="terms-of-service">
@@ -542,6 +598,45 @@
   form.addEventListener('input', function () {
     button.disabled = !form.checkValidity();
   });
+
+  function updateCountryCode() {
+    // Update the value of the countryCode input based on the selected option
+    const countryCodeInput = document.getElementById('countryCode');
+    const countryCode = countryCodeInput.options[countryCodeInput.selectedIndex].value;
+    countryCodeInput.value = countryCode;
+
+  }
+
+  function formatPhoneNumber(input) {
+    // Remove all non-numeric characters from the input
+    let phoneNumber = input.value.replace(/\D/g, '');
+
+    // If the phone number starts with a zero, remove it
+    if (phoneNumber.startsWith('0')) {
+      phoneNumber = phoneNumber.slice(1);
+    }
+
+    // Limit the phone number to 10 digits
+    phoneNumber = phoneNumber.slice(0, 10);
+
+    // Format the phone number as (xxx) xxx-xx-xx
+    let formattedPhoneNumber = '';
+
+    if (phoneNumber.length > 0) {
+      formattedPhoneNumber += `(${phoneNumber.slice(0, 3)}`;
+    }
+    if (phoneNumber.length > 3) {
+      formattedPhoneNumber += `) ${phoneNumber.slice(3, 6)}`;
+    }
+    if (phoneNumber.length > 6) {
+      formattedPhoneNumber += `-${phoneNumber.slice(6, 8)}`;
+    }
+    if (phoneNumber.length > 8) {
+      formattedPhoneNumber += `-${phoneNumber.slice(8)}`;
+    }
+
+    input.value = formattedPhoneNumber;
+  }
 </script>
 
 
