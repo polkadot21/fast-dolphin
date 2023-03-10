@@ -506,21 +506,10 @@
     align-items: center;
   }
 
-  #arrow-icon {
-    font-size: 1.2em;
-    margin: 10px 0 0 10px; /* top, right, bottom, left */
-    cursor: pointer;
-    position: absolute;
-    top: 0;
-    left: 0;
-  }
-
-  #return-text {
-    display: inline-block;
-    margin: 0;
-    position: absolute;
-    top: 12px;
-    left: 40px;
+  #training-plan-placeholder {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
   }
 
 
@@ -639,8 +628,9 @@
     </form>
   </div>
   <div class="back">
-    <span id="arrow-icon">👈</span>
-    <span id="return-text">Выберите новый план</span>
+    <div id="training-plan-placeholder">
+
+    </div>
   </div>
 </div>
 
@@ -784,8 +774,15 @@
       var htmlText = converter.makeHtml(trainingPlanText);
 
       var markdownContainer = document.getElementById('markdown-container');
-      var markdownBack = markdownContainer.querySelector('.back');
-      markdownBack.innerHTML = htmlText;
+
+      const placeholder = document.getElementById('training-plan-placeholder');
+      placeholder.innerHTML = htmlText;
+
+      // Get the height of the content placeholder
+      const contentHeight = placeholder.offsetHeight;
+
+      // Set the min-height of the container to the height of the content
+      markdownContainer.style.minHeight = contentHeight + 20 + 'px';
 
       markdownContainer.classList.add('flipped');
     })
@@ -797,13 +794,19 @@
     });
   });
 
-  // Add an event listener to the arrow icon and return text on the backside of the paper
-  document.getElementById('arrow-icon').addEventListener('click', toggleContainer);
-  document.getElementById('return-text').addEventListener('click', toggleContainer);
-
   function toggleContainer() {
+
+    const container = document.getElementById('markdown-container');
+    const queryForm = document.getElementById('query-form');
+
+   // Get the height of the content placeholder
+    const contentHeight = queryForm.offsetHeight;
+
+    // Set the min-height of the container to the height of the content
+    container.style.minHeight = contentHeight + 20 + 'px';
+
     // Flip the container div back by removing the "flipped" class
-    document.getElementById('markdown-container').classList.toggle('flipped');
+    container.classList.toggle('flipped');
   }
 </script>
 
