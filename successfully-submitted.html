@@ -28,9 +28,9 @@
   <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/showdown@1.9.1/dist/showdown.min.js"></script>
+
   <script src="static/js/cookies.js"></script>
-
-
   <style>
 
     header {
@@ -300,9 +300,9 @@
       cursor: pointer;
   }
 
-  .showcase a:hover {
-    background-color: #6d6d6d;
-  }
+    .showcase a:hover {
+      background-color: #6d6d6d;
+    }
 
 
    .pricing a {
@@ -357,8 +357,7 @@
       padding-left: 0.25em;
     }
 
-
-    #request-form {
+    #logout-form {
       width: 400px;
       margin: 50px auto; /* adjust the margin value as needed */
       background-color: white;
@@ -368,32 +367,30 @@
       box-shadow: 0px 0px 10px #CCCCCC;
     }
 
+    #logout-form h1 {
+      text-align: center;
+      color: black;
+    }
 
-    #request-form h1 {
-          text-align: center;
-          color: black;
-        }
-
-    #request-form a {
+    #logout-form a {
       color: #919191;
       text-decoration: none;
       margin: 0 10px;
       float: right;
     }
 
-    #request-form a:hover {
+    #logout-form a:hover {
       color: gray;
       text-decoration: none;
     }
 
-
-    #request-form label {
+    #logout-form label {
       display: block;
       margin-top: 10px;
       color: black;
     }
 
-    #request-form select {
+    #logout-form input[type=text], input[type=password] {
       width: 100%;
       padding: 12px 20px;
       margin: 8px 0;
@@ -402,60 +399,17 @@
       box-sizing: border-box;
     }
 
-    #request-form input[type=text], input[type=password] {
-      width: 100%;
-      padding: 12px 20px;
-      margin: 8px 0;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      box-sizing: border-box;
+    /* Style the div */
+    #markdown-container {
+      margin: auto;
+      max-width: 600px;
+      padding: 20px;
+      /*background-color: #f0f0f0;*/
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      text-align: left; /* Align the text to the left */
     }
 
-    .full-phone-number {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-    }
-
-    .full-phone-number select {
-      flex: 1;
-      margin-right: 8px;
-    }
-
-    .full-phone-number option {
-      background-color: #fff;
-      color: #333;
-    }
-
-    .full-phone-number option:before {
-      content: "";
-      display: inline-block;
-      width: 24px;
-      /*height: 16px;*/
-      margin-right: 8px;
-      background-repeat: no-repeat;
-      background-position: center;
-    }
-
-    .full-phone-number option[value="+7"]:before {
-      background-image: url('https://flagsapi.com/RU/flat/24.png');
-    }
-
-    .full-phone-number option[value="+49"]:before {
-      background-image: url('https://www.countryflags.io/de/flat/24.png');
-    }
-
-    .full-phone-number option[value="+86"]:before {
-      background-image: url('https://www.countryflags.io/cn/flat/24.png');
-    }
-
-    .full-phone-number input[type="text"] {
-      flex: 3;
-    }
-
-    #phone-error {
-      margin-top: 8px;
-    }
 
     .center-heading {
       text-align: center;
@@ -475,11 +429,6 @@
       color: gray;
       text-decoration: none;
     }
-
-    .form-check-label {
-      display: inline-block;
-    }
-
 
   </style>
 </head>
@@ -508,7 +457,6 @@
     </nav>
 
 
-
   <div class="jumbotron jumbotron-fluid">
     <div class="container">
       <h1 class="display-4">Школа плавания "Быстрый Дельфин"</h1>
@@ -528,178 +476,9 @@
   </div>
 </header>
 
-  <h1 class="center-heading">Оставить новую заявку</h1>
-<form id="request-form">
-  <label for="email">Эл. почта:</label>
-    <input type="text" id="email" name="email" required><br>
-  <label for="firstName">Имя:</label>
-    <input type="text" id="firstName" name="firstName" required><br>
-  <label for="surName">Фамилия:</label>
-    <input type="text" id="surName" name="surName" required><br>
-  <label for="kidFirstName">Имя ребенка:</label>
-    <input type="text" id="kidFirstName" name="kidFirstName" required><br>
-  <label for="kidSurName">Фамилия ребенка:</label>
-    <input type="text" id="kidSurName" name="kidSurName" required><br>
-  <label for="phoneNumber">Номер телефона:</label>
-  <div class="full-phone-number">
-    <select id="countryCode" name="countryCode" onchange="updateCountryCode()">
-      <option value="+7" data-country="Россия" data-code="7" data-flag="https://flagsapi.com/RU/flat/24.png">+7</option>
-      <option value="+49" data-country="Германия" data-code="49" data-flag="https://www.countryflags.io/de/flat/24.png">+49</option>
-      <option value="+86" data-country="Китай" data-code="86" data-flag="https://www.countryflags.io/cn/flat/24.png">+86</option>
-    <!-- Add more countries as needed -->
-    </select>
-    <input type="text" id="phoneNumber" name="phoneNumber" required onkeyup="formatPhoneNumber(this)"><br>
-    <div id="phone-error" style="color: red;"></div>
-  </div>
+  <div id="markdown-container" class="center-text"></div>
+  <script src="static/js/successfullySubmitted.js"></script>
 
-
-  <label for="swimmingLevel">Уровень плавания:</label>
-    <input type="text" id="swimmingLevel" name="swimmingLevel" required><br>
-
-  <label for="canSwim">Ваш ребенок держится на воде?</label>
-      <select id="canSwim" name="canSwim">
-        <option value=true>Да</option>
-        <option value=false>Нет</option>
-      </select>
-
-  <label for="hasTakenCourse">Ваш ребенок занимался плаванием до этого?</label>
-      <select id="hasTakenCourse" name="hasTakenCourse">
-        <option value=true>Да</option>
-        <option value=false>Нет</option>
-      </select>
-
-  <label for="hasTakenCourse">На какие занятия Вы хотите записаться?</label>
-      <select id="lessonType" name="lessonType">
-        <option value=oneTimeAWeekTraining>Групповые, 1 раз в неделю</option>
-        <option value=twoTimesAWeekTraining>Групповые, 2 раза в неделю</option>
-        <option value=personalTraining>Индивидуальные</option>
-      </select>
-
-  <div class="form-check">
-    <input class="form-check-input" type="checkbox" value="" id="terms-of-service" name="terms-of-service" required>
-    <label class="form-check-label" for="terms-of-service">
-      Я согласен с <a href="#">условиями использования</a>
-    </label>
-  </div>
-  <div class="form-check">
-    <input class="form-check-input" type="checkbox" value="" id="data-privacy" name="data-privacy" required>
-    <label class="form-check-label" for="data-privacy">
-      Я согласен с <a href="/privacy">политикой кон-ти</a>
-    </label>
-  </div>
-  <button class="btn btn-block btn-primary text-uppercase" type="submit" style="width: 100%; color: white;" disabled>Отправить</button>
-</form>
-
-<script>
-  // Enable/disable the registration button based on form validity
-  const form = document.getElementById('request-form');
-  const button = form.querySelector('button[type="submit"]');
-
-  form.addEventListener('input', function () {
-    button.disabled = !form.checkValidity();
-  });
-
-  function updateCountryCode() {
-    // Update the value of the countryCode input based on the selected option
-    const countryCodeInput = document.getElementById('countryCode');
-    const countryCode = countryCodeInput.options[countryCodeInput.selectedIndex].value;
-    countryCodeInput.value = countryCode;
-
-  }
-
-  function formatPhoneNumber(input) {
-    // Remove all non-numeric characters from the input
-    let phoneNumber = input.value.replace(/\D/g, '');
-
-    // If the phone number starts with a zero, remove it
-    if (phoneNumber.startsWith('0')) {
-      phoneNumber = phoneNumber.slice(1);
-    }
-
-    // Limit the phone number to 10 digits
-    phoneNumber = phoneNumber.slice(0, 10);
-
-    // Format the phone number as (xxx) xxx-xx-xx
-    let formattedPhoneNumber = '';
-
-    if (phoneNumber.length > 0) {
-      formattedPhoneNumber += `(${phoneNumber.slice(0, 3)}`;
-    }
-    if (phoneNumber.length > 3) {
-      formattedPhoneNumber += `) ${phoneNumber.slice(3, 6)}`;
-    }
-    if (phoneNumber.length > 6) {
-      formattedPhoneNumber += `-${phoneNumber.slice(6, 8)}`;
-    }
-    if (phoneNumber.length > 8) {
-      formattedPhoneNumber += `-${phoneNumber.slice(8)}`;
-    }
-
-    input.value = formattedPhoneNumber;
-  }
-
-  function sendData(data) {
-  const url = 'http://127.0.0.1:8000/v1/new-requests/';
-
-  fetch(url, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(data)
-  })
-    .then(response => {
-      if (response.status === 200) {
-        window.location.href = '/successfully-submitted';
-      } else if (response.status === 409) {
-        alert("You have already sent this request");
-      }
-      return response.json();
-    })
-    .then(data => console.log('Success:', data))
-    .catch(error => console.error('Error:', error));
-}
-
-  function submitForm(event) {
-    event.preventDefault();
-
-    const emailInput = document.getElementById('email');
-    const firstNameInput = document.getElementById('firstName');
-    const surNameInput = document.getElementById('surName');
-    const kidFirstNameInput = document.getElementById('kidFirstName');
-    const kidSurNameInput = document.getElementById('kidSurName');
-    const phoneNumberInput = document.getElementById('phoneNumber');
-    const swimmingLevelInput = document.getElementById('swimmingLevel');
-    const canSwimInput = document.getElementById('canSwim');
-    const hasTakenCourseInput = document.getElementById('hasTakenCourse');
-    const lessonTypeInput = document.getElementById('lessonType');
-
-    const countryCodeInput = document.getElementById('countryCode');
-    const countryCode = countryCodeInput.options[countryCodeInput.selectedIndex].value;
-    const formattedPhoneNumber = phoneNumberInput.value;
-
-    const data = {
-      Email: emailInput.value,
-      Name: firstNameInput.value,
-      Surname: surNameInput.value,
-      KidsName: kidFirstNameInput.value,
-      KidsSurname: kidSurNameInput.value,
-      PhoneNumber: `${countryCode}${formattedPhoneNumber}`,
-      SwimmingLevel: swimmingLevelInput.value,
-      canSwim: canSwimInput.value === 'true',
-      hasTakenCourses: hasTakenCourseInput.value === 'true',
-      LessonType: lessonTypeInput.value,
-    };
-    localStorage.setItem('firstName', firstNameInput.value); // Store the firstNameInput value in local storage
-    sendData(data);
-  }
-
-  // const form = document.getElementById('request-form');
-  form.addEventListener('submit', submitForm);
-
-</script>
-
-  <!-- Footer -->
 <footer>
   <div class="container text-center">
     <div class="row">
@@ -740,6 +519,7 @@
     <p class="text-muted small mt-4">&copy; 2012-2023 <a href="http://www.fast-dolphin.com/">"Быстрый Дельфин"</a><br>
         Все права защищены.</p>
   </div>
+
 </footer>
 </body>
 </html>
