@@ -458,21 +458,10 @@
     align-items: center;
   }
 
-  #arrow-icon {
-    font-size: 1.2em;
-    margin: 10px 0 0 10px; /* top, right, bottom, left */
-    cursor: pointer;
-    position: absolute;
-    top: 0;
-    left: 0;
-  }
-
-  #return-text {
-    display: inline-block;
-    margin: 0;
-    position: absolute;
-    top: 12px;
-    left: 40px;
+  #training-plan-placeholder {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
   }
 
 
@@ -582,16 +571,18 @@
 
       <label for="day">День:</label>
       <select id="day" name="day">
-        <option value="A">A</option>
-        <option value="B">B</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
       </select>
 
       <input type="submit" value="Отправить">
     </form>
   </div>
   <div class="back">
-    <span id="arrow-icon">👈</span>
-    <span id="return-text">Выберите новый план</span>
+    <div id="training-plan-placeholder">
+
+    </div>
   </div>
 </div>
 
@@ -601,19 +592,174 @@
     // Prevent the default form submission behavior
     event.preventDefault();
 
-    // Flip the container div by adding the "flipped" class
-    document.getElementById('markdown-container').classList.add('flipped');
+    // Get the input values
+    const level = document.getElementById('level').value;
+    const week = document.getElementById('week').value;
+    const day = document.getElementById('day').value;
+
+    // Get the access token from localStorage
+    const accessToken = localStorage.getItem('access_token');
+
+    // Call the endpoint with the access token and input values
+    fetch(`http://127.0.0.1:8000/v1/training-plan/?level=${level}&week=${week}&day=${day}`, {
+      method: 'GET',
+      headers: {
+        'Authorization': `Bearer ${accessToken}`,
+        'Accept': 'application/json'
+      }
+    })
+    .then(response => {
+      if (response.ok) {
+        // Flip the container div by adding the "flipped" class
+        // document.getElementById('markdown-container').classList.add('flipped');
+        return response.json();
+
+      } else if (response.status === 404) {
+        // Show "Not found" pop field
+        alert('Not found');
+      } else if (response.status === 401) {
+        // Redirect to the login page
+        window.location.href = '/login';
+      } else if (response.status === 422) {
+        // Show "Wrong input" alert message
+        alert('Wrong input');
+      }
+    })
+    .then(data => {
+      // Format the response data as a markdown document
+      let level = data.Resources[0].Level
+      let week = data.Resources[0].Week
+      let day = data.Resources[0].Day
+
+      let exercises = data.Resources[0].Exercises
+
+      var trainingPlanText = `##### Уровень плавания: ${level}\n\n` +
+                            `##### Календарная неделя: ${week}\n\n` +
+                            `##### Тренировочный день: ${day}\n\n` +
+                            ` -------------------------------\n\n`;
+
+
+     // Add each exercise to the training plan text
+      for (let i = 0; i < exercises.length; i++) {
+        let exercise = exercises[i];
+        // Volume or Time
+        let volume = exercise.Volume;
+        let volumeUnits = exercise.VolumeUnits;
+        let time = exercise.Time;
+        let timeUnits = exercise.TimeUnits;
+
+        // Stroke
+        let stroke = exercise.Stroke;
+        let legs = exercise.Legs;
+        let arms = exercise.Arms;
+        let speed = exercise.Speed;
+        let effort_level = 'easy';
+
+        // Equipment
+        let paddles = exercise.Equipment.Paddles;
+        let kickboard = exercise.Equipment.Kickboard;
+        let pullBuoy = exercise.Equipment.PullBuoy;
+        let snorkel = exercise.Equipment.Snorkel;
+        let otherEquipment = exercise.Equipment.Other;
+
+        // Comments
+        let comments = exercise.Comments;
+
+        let index = i + 1;
+        let coreTask = '';
+
+        if (speed === 3 || speed === 4) {
+          effort_level = 'moderate';
+        }
+
+        if (speed === 5 || speed === 6) {
+          effort_level = 'fast';
+        }
+
+        if (volume === 0) {
+          coreTask += `\n${index}: ${time}${timeUnits} ${stroke} ${effort_level}\n`;
+        } else {
+          coreTask += `\n${index}: ${volume}${volumeUnits} ${stroke} ${effort_level}\n`;
+        }
+
+        if (legs) {
+          coreTask += ' legs';
+        }
+
+        if (arms) {
+          coreTask += ' arms';
+        }
+
+        if (paddles) {
+          coreTask += ' paddles';
+        }
+
+        if (kickboard) {
+          coreTask += ' kickboard';
+        }
+
+        if (pullBuoy) {
+          coreTask += ' pull buoy';
+        }
+
+        if (snorkel) {
+          coreTask += ' snorkel';
+        }
+
+        if (otherEquipment !== '' && otherEquipment !== 'string') {
+          coreTask += ' ' + otherEquipmentl;
+        }
+
+        if (comments) {
+          coreTask += '\n ' + comments + '\n';
+        }
+
+        trainingPlanText += coreTask + "\n\n";
+      }
+
+      trainingPlanText +=  ` -------------------------------\n\n`;
+      trainingPlanText += '<a onClick="toggleContainer()">👈 Выбрать новый план</a>'
+
+      // Create a new converter object
+      var converter = new showdown.Converter();
+      // Convert the Markdown text to HTML
+      var htmlText = converter.makeHtml(trainingPlanText);
+
+      var markdownContainer = document.getElementById('markdown-container');
+
+      const placeholder = document.getElementById('training-plan-placeholder');
+      placeholder.innerHTML = htmlText;
+
+      // Get the height of the content placeholder
+      const contentHeight = placeholder.offsetHeight;
+
+      // Set the min-height of the container to the height of the content
+      markdownContainer.style.minHeight = contentHeight + 20 + 'px';
+
+      markdownContainer.classList.add('flipped');
+    })
+
+    .catch(error => {
+      console.error(error);
+      // Show error message to user
+      alert('An error occurred');
+    });
   });
 
-    // Add an event listener to the arrow icon and return text on the backside of the paper
-  document.getElementById('arrow-icon').addEventListener('click', toggleContainer);
-  document.getElementById('return-text').addEventListener('click', toggleContainer);
-
   function toggleContainer() {
-    // Flip the container div back by removing the "flipped" class
-    document.getElementById('markdown-container').classList.toggle('flipped');
-  }
 
+    const container = document.getElementById('markdown-container');
+    const queryForm = document.getElementById('query-form');
+
+   // Get the height of the content placeholder
+    const contentHeight = queryForm.offsetHeight;
+
+    // Set the min-height of the container to the height of the content
+    container.style.minHeight = contentHeight + 20 + 'px';
+
+    // Flip the container div back by removing the "flipped" class
+    container.classList.toggle('flipped');
+  }
 </script>
 
 

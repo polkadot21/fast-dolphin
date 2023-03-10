@@ -478,6 +478,8 @@
 
 <div id="markdown-container" class="center-text"></div>
   <script>
+    // Get the access token from local storage
+    var accessToken = localStorage.getItem('access_token');
     // Define the Markdown text
     var markdownText = '# Мой аккаунт\n\n' +
                         'Привет, <username>! ' +
@@ -485,7 +487,7 @@
                         'Вот ваши варианты:\n\n## ' +
                         '📝 Личные данные\n\n' +
                         'Здесь вы можете просматривать и редактировать свою личную информацию.\n\n' +
-                        '## <a href="/training-plans" target="_blank">🏋️‍♀️ Тренировочные планы</a>\n\n' +
+                        '## <a href="' + (accessToken ? '/training-plans' : '/login') + '">🏋️‍♀️ Тренировочные планы</a>\n\n' +
                         'Ознакомьтесь с нашим выбором тренировочных планов и выберите тот, который подходит вам. \n\n' +
                         '## <a href="/logout" target="_blank">🔒 Выйти</a>';
 
@@ -495,8 +497,7 @@
     // Convert the Markdown text to HTML
     var htmlText = converter.makeHtml(markdownText);
 
-    // Get the access token from local storage
-    var accessToken = localStorage.getItem('access_token');
+
 
     if (!accessToken) {
       // Redirect to login page if access token is not present in local storage
