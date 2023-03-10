@@ -637,8 +637,67 @@
 
     input.value = formattedPhoneNumber;
   }
-</script>
 
+  function sendData(data) {
+  const url = 'http://127.0.0.1:8000/v1/new-requests/';
+
+  fetch(url, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(data)
+  })
+    .then(response => {
+      if (response.status === 200) {
+        window.location.href = '/successfullySubmitted';
+      } else if (response.status === 409) {
+        alert("You have already sent this request");
+      }
+      return response.json();
+    })
+    .then(data => console.log('Success:', data))
+    .catch(error => console.error('Error:', error));
+}
+
+  function submitForm(event) {
+    event.preventDefault();
+
+    const emailInput = document.getElementById('email');
+    const firstNameInput = document.getElementById('firstName');
+    const surNameInput = document.getElementById('surName');
+    const kidFirstNameInput = document.getElementById('kidFirstName');
+    const kidSurNameInput = document.getElementById('kidSurName');
+    const phoneNumberInput = document.getElementById('phoneNumber');
+    const swimmingLevelInput = document.getElementById('swimmingLevel');
+    const canSwimInput = document.getElementById('canSwim');
+    const hasTakenCourseInput = document.getElementById('hasTakenCourse');
+    const lessonTypeInput = document.getElementById('lessonType');
+
+    const countryCodeInput = document.getElementById('countryCode');
+    const countryCode = countryCodeInput.options[countryCodeInput.selectedIndex].value;
+    const formattedPhoneNumber = phoneNumberInput.value;
+
+    const data = {
+      Email: emailInput.value,
+      Name: firstNameInput.value,
+      Surname: surNameInput.value,
+      KidsName: kidFirstNameInput.value,
+      KidsSurname: kidSurNameInput.value,
+      PhoneNumber: `${countryCode}${formattedPhoneNumber}`,
+      SwimmingLevel: swimmingLevelInput.value,
+      canSwim: canSwimInput.value === 'true',
+      hasTakenCourses: hasTakenCourseInput.value === 'true',
+      LessonType: lessonTypeInput.value,
+    };
+
+    sendData(data);
+  }
+
+  // const form = document.getElementById('request-form');
+  form.addEventListener('submit', submitForm);
+
+</script>
 
   <!-- Footer -->
 <footer>
