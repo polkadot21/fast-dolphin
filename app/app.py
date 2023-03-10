@@ -79,6 +79,10 @@ async def render_signup(request: Request):
 async def render_customer_request(request: Request):
     return templates.TemplateResponse("customer-request.html", {"request": request})
 
+@app.get("/successfully-submitted", response_class=HTMLResponse)
+async def render_successfully_submitted(request: Request):
+    return templates.TemplateResponse("successfully-submitted.html", {"request": request})
+
 
 @app.get("/password_reset", response_class=HTMLResponse)
 async def render_reset_password(request: Request):
