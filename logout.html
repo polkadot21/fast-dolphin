@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="плавание, кроль, обучение плаванию, техника плавания.">
+  <meta name="author" content="Наталья Саурова">
+  <meta name="keywords" content="обучение плаванию, бассейн, научить плавать">
+
+  <title>Школа плавания "Быстрый Дельфин"</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom fonts for this template -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.5.5/css/simple-line-icons.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+
+  <!-- Custom styles for this template -->
+  <link href="static/css/landing-page.min.css" rel="stylesheet">
+  <link rel="shortcut icon" href="static/img/favicon.ico">
+
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700|Open+Sans">
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/showdown@1.9.1/dist/showdown.min.js"></script>
+
+  <script src="static/js/cookies.js"></script>
+  <style>
+
+    header {
+      background-color: white;
+    }
+
+    .jumbotron {
+      background-color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 0;
+      margin-top: 35px;
+    }
+
+    header h1 {
+
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      height: 100%;
+    }
+
+    header p {
+
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      height: 100%;
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+    }
+
+    nav ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav li {
+      margin: 0 10px;
+    }
+
+    nav a {
+      color: black;
+      font-weight: bold;
+      text-decoration: none;
+      text-transform: uppercase;
+    }
+
+    nav a:hover {
+      color: gray;
+    }
+
+    footer {
+      background-color: #F8F9FA;
+      padding: 25px 0;
+      margin-top: 100px;
+      margin-bottom: 0; /* Set margin-bottom to 0 */
+    }
+
+    footer a {
+      color: black;
+      text-decoration: none;
+      margin: 0 10px;
+
+    }
+
+    footer a:hover {
+      color: gray;
+      text-decoration: none;
+
+    }
+
+    footer p {
+      margin: 10px 0;
+    }
+
+
+    .logo {
+      height: 30px; /* set the height of the logo */
+      margin-right: 10px; /* add some margin between the logo and the text */
+    }
+
+    .pricing {
+      background-color: #f8f9fa; /* set the background color to a light gray */
+    }
+
+    section.pricing {
+      background: #f8f9fa;
+    }
+
+    .pricing .card {
+      border: none;
+      border-radius: 1rem;
+      transition: all 0.2s;
+      box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.1);
+    }
+
+    .pricing hr {
+      margin: 1.5rem 0;
+    }
+
+    .pricing .card-title {
+      margin: 0.5rem 0;
+      font-size: 0.9rem;
+      letter-spacing: .1rem;
+      font-weight: bold;
+    }
+
+    .pricing .card-price {
+      font-size: 3rem;
+      margin: 0;
+    }
+
+    .pricing .card-price .period {
+      font-size: 0.8rem;
+    }
+
+    .pricing ul li {
+      margin-bottom: 1rem;
+    }
+
+    .pricing .text-muted {
+      opacity: 0.7;
+    }
+
+
+    @media (min-width: 992px) {
+      .pricing .card:hover {
+        margin-top: -.25rem;
+        margin-bottom: .25rem;
+        box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.3);
+      }
+      .pricing .card:hover .btn {
+        opacity: 1;
+      }
+    }
+
+    .btn-primary {
+      background-color: #919191; /* set the button color to a gray metallic color */
+      border-color: #919191; /* set the border color to match the button color */
+      margin-top: 10px;
+    }
+
+    .btn-primary:hover {
+      background-color: gray; /* set the button color to a gray metallic color */
+      /*border-color: #919191; !* set the border color to match the button color *!*/
+    }
+
+    .testimonials {
+      background-color: #f8f9fa; /* replace with your desired gray metallic color */
+    }
+
+    .testimonials h2.disabled{
+      color: gray;
+    }
+
+    .testimonials p.disabled{
+      color: gray;
+    }
+
+
+    .cookies-popup {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background-color: #f2f2f2;
+      padding: 20px;
+      text-align: center;
+      z-index: 9999;
+    }
+
+    .cookies-popup p {
+      margin: 0 0 10px 0;
+    }
+
+    .cookies-popup a {
+      color: #919191;
+    }
+
+    .cookies-popup button {
+      background-color: #919191;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .cookies-popup button:hover {
+      background-color: #6d6d6d;
+    }
+
+    .navbar-nav .nav-link {
+      color: black;
+    }
+
+    .navbar-light .navbar-nav .nav-link {
+    color: rgba(0, 0, 0, 0.9);
+    }
+
+    .navbar-light .navbar-nav .nav-link:hover, .navbar-light .navbar-nav .nav-link:focus {
+      color: rgba(0, 0, 0, 0.7);
+    }
+
+    .navbar-light .navbar-nav .nav-link.disabled {
+      color: rgba(0, 0, 0, 0.3);
+    }
+
+    .nav-link.disabled {
+      color: gray;
+      pointer-events: none; /* Disables the link */
+    }
+
+    .soon-text {
+      font-size: 8px;
+      margin-left: 5px;
+      vertical-align: super;
+    }
+
+    .custom-header {
+      width: 100%;
+    }
+
+    .custom-header .navbar-brand {
+      display: inline-flex;
+      align-items: center;
+    }
+
+    .custom-header .navbar-nav {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .custom-header .navbar-nav .nav-item {
+      flex-grow: 1;
+      text-align: center;
+    }
+
+    .custom-header .navbar-nav .nav-item:last-child {
+      text-align: right;
+    }
+
+    .nav-link.disabled sup {
+      font-size: 0.7em;
+      vertical-align: super;
+      margin-left: 5px;
+    }
+
+
+   .showcase a {
+      background-color: #919191;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+  }
+
+    .showcase a:hover {
+      background-color: #6d6d6d;
+    }
+
+
+   .pricing a {
+      background-color: #919191;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+  }
+
+  .pricing a:hover {
+    background-color: #6d6d6d;
+  }
+
+  .soon-icon a {
+      color: #ccc;
+      padding-right: 10px;
+    }
+
+    .soon-icon a:hover {
+      padding-right: 10px;
+      color: #ccc;
+    }
+
+    .soon-icon.disabled a {
+      pointer-events: none;
+    }
+
+
+    .soon-icon i {
+      opacity: 0.5;
+    }
+
+    .soon-icon:hover i {
+      opacity: 0.8;
+    }
+
+    .soon-icon {
+      position: relative;
+    }
+
+    .soon-text-icon {
+      position: absolute;
+      top: 0;
+      right: 0;
+      font-size: 8px;
+      line-height: 1;
+    }
+
+    .soon-icon .soon-text-icon {
+      padding-left: 0.25em;
+    }
+
+    #logout-form {
+      width: 400px;
+      margin: 50px auto; /* adjust the margin value as needed */
+      background-color: white;
+      border: 1px solid #CCCCCC;
+      border-radius: 5px;
+      padding: 20px;
+      box-shadow: 0px 0px 10px #CCCCCC;
+    }
+
+    #logout-form h1 {
+      text-align: center;
+      color: black;
+    }
+
+    #logout-form a {
+      color: #919191;
+      text-decoration: none;
+      margin: 0 10px;
+      float: right;
+    }
+
+    #logout-form a:hover {
+      color: gray;
+      text-decoration: none;
+    }
+
+    #logout-form label {
+      display: block;
+      margin-top: 10px;
+      color: black;
+    }
+
+    #logout-form input[type=text], input[type=password] {
+      width: 100%;
+      padding: 12px 20px;
+      margin: 8px 0;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+
+    /* Style the div */
+    #markdown-container {
+      margin: auto;
+      max-width: 600px;
+      padding: 20px;
+      /*background-color: #f0f0f0;*/
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      text-align: left; /* Align the text to the left */
+    }
+
+
+    .center-heading {
+      text-align: center;
+    }
+
+    .center-text {
+      text-align: center;
+      margin-top: 10px;
+    }
+
+    .center-text a {
+      color: #919191;
+      text-decoration: none;
+    }
+
+    .center-text a:hover {
+      color: gray;
+      text-decoration: none;
+    }
+
+  </style>
+</head>
+<body>
+
+<!--   Masthead-->
+
+<header class="custom-header">
+   <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+        <div class="row w-100 align-items-center">
+          <div class="col-6 col-md-3">
+            <a class="navbar-brand" href="/">
+              <img src="static/img/logo_2.0.png" alt="Быстрый Дельфин" class="logo">
+              Быстрый Дельфин
+            </a>
+          </div>
+          <div class="col-6 col-md-6 text-center">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+         </div>
+        <div class="col-3 col-md-3 text-center">
+          <a class="nav-link disabled" href="/login">Войти<span class="soon-text">скоро</span></a>
+        </div>
+      </div>
+    </nav>
+
+
+  <div class="jumbotron jumbotron-fluid">
+    <div class="container">
+      <h1 class="display-4">Школа плавания "Быстрый Дельфин"</h1>
+      <p class="lead">Мы поможем вам освоить плавание и достичь лучших результатов в кратчайшие сроки. Присоединяйтесь к нам прямо сейчас!</p>
+    </div>
+  </div>
+
+    <!-- Cookies consent pop-up -->
+  <div class="cookies-popup" id="cookiesPopup">
+    <p>
+      Этот сайт использует файлы cookie, чтобы обеспечить вам наилучшие впечатления от использования нашего сайта. <br>
+      Продолжая пользоваться этим сайтом, вы соглашаетесь на использование нами файлов cookie.
+      <a href="/privacy">Узнать больше</a>
+    </p>
+    <button class="btn btn-primary" onclick="acceptCookies()">Согласиться</button>
+    <button class="btn btn-primary" onclick="rejectCookies()">Отказаться</button>
+  </div>
+</header>
+
+  <div id="markdown-container" class="center-text"></div>
+  <script src="static/js/logout.js"></script>
+
+<footer>
+  <div class="container text-center">
+    <div class="row">
+      <div class="col-12 mb-4">
+        <p class="mb-3">Подписывайтесь на нас в социальных сетях!</p>
+        <ul class="list-inline social-icons">
+          <li class="list-inline-item mr-4">
+            <a href="https://vk.com/fast_dolphin">
+              <i class="fab fa-vk fa-3x"></i>
+            </a>
+          </li>
+          <li class="list-inline-item soon-icon disabled">
+            <a href="">
+              <i class="fab fa-youtube fa-3x"></i>
+                <span class="soon-text-icon">скоро</span>
+            </a>
+          <li class="list-inline-item soon-icon disabled">
+            <a href="">
+              <i class="fab fa-telegram fa-3x"></i>
+              <span class="soon-text-icon">скоро</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container justify-content-center">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a href="/">Главная страница</a>
+          </li>
+          <li class="nav-item">
+            <a href="/rules">Правила школы</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <p class="text-muted small mt-4">&copy; 2012-2023 <a href="http://www.fast-dolphin.com/">"Быстрый Дельфин"</a><br>
+        Все права защищены.</p>
+  </div>
+
+</footer>
+</body>
+</html>
