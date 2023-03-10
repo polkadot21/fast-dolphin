@@ -41,6 +41,11 @@ async def login(request: Request):
     return templates.TemplateResponse("login.html", {"request": request})
 
 
+@app.get("/logout", response_class=HTMLResponse)
+async def render_account(request: Request):
+    return templates.TemplateResponse("logout.html", {"request": request})
+
+
 @app.get("/account", response_class=HTMLResponse)
 async def render_account(request: Request):
     return templates.TemplateResponse("account.html", {"request": request})
