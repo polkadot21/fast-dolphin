@@ -570,10 +570,11 @@
 
   <label for="hasTakenCourse">На какие занятия Вы хотите записаться?</label>
       <select id="lessonType" name="lessonType">
-        <option value=oneTimeAWeekTraining>Групповые, 1 раз в неделю</option>
-        <option value=twoTimesAWeekTraining>Групповые, 2 раза в неделю</option>
-        <option value=personalTraining>Индивидуальные</option>
+        <option value=oneTimeAWeekTraining id="oneTimeAWeekTraining">Групповые, 1 раз в неделю</option>
+        <option value=twoTimesAWeekTraining id="twoTimesAWeekTraining">Групповые, 2 раза в неделю</option>
+        <option value=personalTraining id="personalTraining">Индивидуальные</option>
       </select>
+  <script src="static/js/getDefaultLessonType.js"></script>
 
   <div class="form-check">
     <input class="form-check-input" type="checkbox" value="" id="terms-of-service" name="terms-of-service" required>
