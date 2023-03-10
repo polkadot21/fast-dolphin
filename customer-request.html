@@ -650,7 +650,7 @@
   })
     .then(response => {
       if (response.status === 200) {
-        window.location.href = '/successfullySubmitted';
+        window.location.href = '/successfully-submitted';
       } else if (response.status === 409) {
         alert("You have already sent this request");
       }
@@ -690,7 +690,7 @@
       hasTakenCourses: hasTakenCourseInput.value === 'true',
       LessonType: lessonTypeInput.value,
     };
-
+    localStorage.setItem('firstName', firstNameInput.value); // Store the firstNameInput value in local storage
     sendData(data);
   }
 
