@@ -6,7 +6,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="плавание, кроль, обучение плаванию, техника плавания.">
-  <meta name="author" content="Нxаталья Саурова">
+  <meta name="author" content="Наталья Саурова">
   <meta name="keywords" content="обучение плаванию, бассейн, научить плавать">
 
   <title>Школа плавания "Быстрый Дельфин"</title>
@@ -28,138 +28,513 @@
   <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+  <script src="static/js/cookies.js"></script>
 
+  <style>
+
+    header {
+    background-color: white;
+    }
+
+    .jumbotron {
+      background-color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 0;
+      margin-top: 35px;
+    }
+
+    header h1 {
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 100%;
+    }
+
+    header p {
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 100%;
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+    }
+
+    nav ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav li {
+      margin: 0 10px;
+    }
+
+    nav a {
+      color: black;
+      font-weight: bold;
+      text-decoration: none;
+      text-transform: uppercase;
+    }
+
+    nav a:hover {
+      color: gray;
+    }
+
+    footer {
+     background-color: #F8F9FA;
+     padding: 25px 0;
+      margin-bottom: 0; /* Set margin-bottom to 0 */
+    }
+
+    footer a {
+      color: black;
+      text-decoration: none;
+      margin: 0 10px;
+
+    }
+
+    footer a:hover {
+      color: gray;
+      text-decoration: none;
+
+    }
+
+    footer p {
+      margin: 0;
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
+
+
+    .logo {
+      height: 30px; /* set the height of the logo */
+      margin-right: 10px; /* add some margin between the logo and the text */
+    }
+
+    .pricing {
+      background-color: #f8f9fa; /* set the background color to a light gray */
+    }
+
+    section.pricing {
+      background: #f8f9fa;
+    }
+
+    .pricing .card {
+      border: none;
+      border-radius: 1rem;
+      transition: all 0.2s;
+      box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.1);
+    }
+
+    .pricing hr {
+      margin: 1.5rem 0;
+    }
+
+    .pricing .card-title {
+      margin: 0.5rem 0;
+      font-size: 0.9rem;
+      letter-spacing: .1rem;
+      font-weight: bold;
+    }
+
+    .pricing .card-price {
+      font-size: 3rem;
+      margin: 0;
+    }
+
+    .pricing .card-price .period {
+      font-size: 0.8rem;
+    }
+
+    .pricing ul li {
+      margin-bottom: 1rem;
+    }
+
+    .pricing .text-muted {
+      opacity: 0.7;
+    }
+
+
+    @media (min-width: 992px) {
+      .pricing .card:hover {
+        margin-top: -.25rem;
+        margin-bottom: .25rem;
+        box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.3);
+      }
+      .pricing .card:hover .btn {
+        opacity: 1;
+      }
+    }
+
+    .btn-primary {
+      background-color: #919191; /* set the button color to a gray metallic color */
+      border-color: #919191; /* set the border color to match the button color */
+    }
+
+    .testimonials {
+      background-color: #f8f9fa; /* replace with your desired gray metallic color */
+    }
+
+    .testimonials h2.disabled{
+      color: gray;
+    }
+
+    .testimonials p.disabled{
+      color: gray;
+    }
+
+
+    .cookies-popup {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background-color: #f2f2f2;
+      padding: 20px;
+      text-align: center;
+      z-index: 9999;
+    }
+
+    .cookies-popup p {
+      margin: 0 0 10px 0;
+    }
+
+    .cookies-popup a {
+      color: #919191;
+    }
+
+    .cookies-popup button {
+      background-color: #919191;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .cookies-popup button:hover {
+      background-color: #6d6d6d;
+    }
+
+    .navbar-nav .nav-link {
+      color: black;
+    }
+
+    .navbar-light .navbar-nav .nav-link {
+    color: rgba(0, 0, 0, 0.9);
+    }
+
+    .navbar-light .navbar-nav .nav-link:hover, .navbar-light .navbar-nav .nav-link:focus {
+      color: rgba(0, 0, 0, 0.7);
+    }
+
+    .navbar-light .navbar-nav .nav-link.disabled {
+      color: rgba(0, 0, 0, 0.3);
+    }
+
+    .nav-link.disabled {
+      color: gray;
+      pointer-events: none; /* Disables the link */
+    }
+
+    .soon-text {
+      font-size: 8px;
+      margin-left: 5px;
+      vertical-align: super;
+    }
+
+    .soon-text-h2 {
+      font-size: 16px;
+      margin-left: 5px;
+      vertical-align: super;
+    }
+
+    .custom-header {
+      width: 100%;
+    }
+
+    .custom-header .navbar-brand {
+      display: inline-flex;
+      align-items: center;
+    }
+
+    .custom-header .navbar-nav {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .custom-header .navbar-nav .nav-item {
+      flex-grow: 1;
+      text-align: center;
+    }
+
+    .custom-header .navbar-nav .nav-item:last-child {
+      text-align: right;
+    }
+
+    .nav-link.disabled sup {
+      font-size: 0.7em;
+      vertical-align: super;
+      margin-left: 5px;
+    }
+
+
+   .showcase a {
+      background-color: #919191;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+  }
+
+  .showcase a:hover {
+    background-color: #6d6d6d;
+  }
+
+
+   .pricing a {
+      background-color: #919191;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+  }
+
+  .pricing a:hover {
+    background-color: #6d6d6d;
+  }
+
+  .soon-icon a {
+      color: #ccc;
+      padding-right: 10px;
+    }
+
+    .soon-icon a:hover {
+      padding-right: 10px;
+      color: #ccc;
+    }
+
+    .soon-icon.disabled a {
+      pointer-events: none;
+    }
+
+
+    .soon-icon i {
+      opacity: 0.5;
+    }
+
+    .soon-icon:hover i {
+      opacity: 0.8;
+    }
+
+    .soon-icon {
+      position: relative;
+    }
+
+    .soon-text-icon {
+      position: absolute;
+      top: 0;
+      right: 0;
+      font-size: 8px;
+      line-height: 1;
+    }
+
+    .soon-icon .soon-text-icon {
+      padding-left: 0.25em;
+    }
+
+  </style>
 </head>
-
 <body>
 
-  <!-- Navigation -->
-  <nav class="navbar navbar-light bg-light static-top">
-    <div class="container">
-      <a class="btn btn-primary" href="https://www.youtube.com/channel/UCTcmmfJJpVChMFvrCnKlYRQ?view_as=subscriber">Наш канал на Youtube</a>
-      <a class="navbar-brand" href="https://calendly.com/fastdolphinmoscow">8-910-462-59-25</a>
+<!--   Masthead-->
 
-      <div class="col-lg-6 h-100 text-center text-lg-right my-auto">
-          <ul class="list-inline mb-0">
-            <li class="list-inline-item mr-3">
-              <a href="https://www.facebook.com/saurovan">
-                <i class="fab fa-facebook fa-2x fa-fw"></i>
-              </a>
-            </li>
-            <li class="list-inline-item mr-3">
-              <a href="https://vk.com/saurova_n">
-                <i class="fab fa-vk fa-2x fa-fw"></i>
-              </a>
-            </li>
-            <li class="list-inline-item">
-              <a href="https://www.instagram.com/nataliasaurova/">
-                <i class="fab fa-instagram fa-2x fa-fw"></i>
-              </a>
-            </li>
-          </ul>
+<header class="custom-header">
+   <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+        <div class="row w-100 align-items-center">
+          <div class="col-6 col-md-3">
+            <a class="navbar-brand" href="/">
+              <img src="static/img/logo_2.0.png" alt="Быстрый Дельфин" class="logo">
+              Быстрый Дельфин
+            </a>
+          </div>
+          <div class="col-6 col-md-6 text-center">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+              <ul class="navbar-nav">
+                <li class="nav-item">
+                  <a class="nav-link" href="#aboutus">О нас</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#place">Место занятий</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#services">Услуги</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#team">Команда</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#testimonials">Отзывы</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#contacts">Контакты</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-3 col-md-3 text-center">
+            <a class="nav-link disabled" href="#">Войти<span class="soon-text">скоро</span></a>
+          </div>
         </div>
-    </div>
   </nav>
 
-  <!-- Masthead -->
-  <header class="masthead text-white text-center">
-    <div class="overlay"></div>
+
+  <div class="jumbotron jumbotron-fluid">
     <div class="container">
-      <div class="row">
-        <div class="col-xl-9 mx-auto">
-          <h1 class="mb-5">
-          Школа плавания <br>"Быстрый Дельфин"</h1>
-        </div>
-      </div>
-    </div>
-  </header>
-
-
-  <!-- This snippet uses Font Awesome 5 Free as a dependency. You can download it at fontawesome.io! -->
-<link rel="stylesheet" href="static/css/pricing.css">
-<section class="pricing py-5">
-  <div class="container">
-    <div class="row">
-      <!-- 4 trainings Tier -->
-      <div class="col-lg-4">
-        <div class="card mb-5 mb-lg-0">
-          <div class="card-body">
-            <h5 class="card-title text-muted text-uppercase text-center">Абонемент на 4 занятия</h5>
-            <h6 class="card-price text-center">950<span class="period">/занятие</span></h6>
-            <hr>
-              <ul class="fa-ul">
-              <li><span class="fa-li"><i class="fas fa-check"></i></span><strong>Стоимость абонемента — 3800р</strong></li>
-              <li><span class="fa-li"><i class="fas fa-check"></i></span>У каждой группы свой тренер</li>
-              <li><span class="fa-li"><i class="fas fa-check"></i></span>В группе 8 человек</li>
-              <li><span class="fa-li"><i class="fas fa-check"></i></span>Все оборудование включено (доски, колобашки, пояса и тд)</li>
-            </ul>
-            <a href="https://forms.gle/JRrPDaxx8FXeELN6A" class="btn btn-block btn-primary text-uppercase">Записаться!</a>
-          </div>
-        </div>
-      </div>
-      <!-- 8 trainings Tier -->
-      <div class="col-lg-4">
-        <div class="card mb-5 mb-lg-0">
-          <div class="card-body">
-            <h5 class="card-title text-muted text-uppercase text-center">Абонемент на 8 занятий</h5>
-            <h6 class="card-price text-center">912р<span class="period">/занятие</span></h6>
-            <hr>
-            <ul class="fa-ul">
-              <li><span class="fa-li"><i class="fas fa-check"></i></span><strong>Стоимость абонемента — 7300р</strong></li>
-              <li><span class="fa-li"><i class="fas fa-check"></i></span>У каждой группы свой тренер</li>
-              <li><span class="fa-li"><i class="fas fa-check"></i></span>В группе 8 человек</li>
-              <li><span class="fa-li"><i class="fas fa-check"></i></span>Все оборудование включено (доски, колобашки, пояса и тд)</li>
-            </ul>
-            <a href="https://forms.gle/JRrPDaxx8FXeELN6A" class="btn btn-block btn-primary text-uppercase">Записаться!</a>
-          </div>
-        </div>
-      </div>
-      <!-- Individual Tier -->
-      <div class="col-lg-4">
-        <div class="card mb-5 mb-lg-0">
-          <div class="card-body">
-             <h5 class="card-title text-muted text-uppercase text-center">Индивидуальное занятие плаванием</h5>
-            <h6 class="card-price text-center">2500р<span class="period">/занятие</span></h6>
-            <hr>
-            <ul class="fa-ul">
-              <li><span class="fa-li"><i class="fas fa-check"></i></span><strong>1 занятие в бассейне 45 мин</strong></li>
-              <li><span class="fa-li"><i class="fas fa-check"></i></span>Тренер вместе с ребенком в воде</li>
-              <li><span class="fa-li"><i class="fas fa-check"></i></span>Все оборудование включено (доски, колобашки, пояса и тд)</li>
-            </ul>
-            <a href="https://forms.gle/JRrPDaxx8FXeELN6A" class="btn btn-block btn-primary text-uppercase">Записаться!</a>
-          </div>
-        </div>
-      </div>
+      <h1 class="display-4">Школа плавания "Быстрый Дельфин"</h1>
+      <p class="lead">Мы поможем вам освоить плавание и достичь лучших результатов в кратчайшие сроки. Присоединяйтесь к нам прямо сейчас!</p>
     </div>
   </div>
-</section>
 
-    <!-- Image Showcases -->
-  <section class="showcase bg-light">
+    <!-- Cookies consent pop-up -->
+  <div class="cookies-popup" id="cookiesPopup">
+    <p>
+      Этот сайт использует файлы cookie, чтобы обеспечить вам наилучшие впечатления от использования нашего сайта. <br>
+      Продолжая пользоваться этим сайтом, вы соглашаетесь на использование нами файлов cookie.
+      <a href="/privacy">Узнать больше</a>
+    </p>
+    <button class="btn btn-primary" onclick="acceptCookies()">Согласиться</button>
+    <button class="btn btn-primary" onclick="rejectCookies()">Отказаться</button>
+  </div>
+</header>
+
+
+  <!-- Image Showcases -->
+  <section id="aboutus" class="showcase">
     <div class="container-fluid p-0">
       <div class="row no-gutters">
-        <div class="col-lg-6 order-lg-2 text-white showcase-img"   style="background-image: url('static/img/tikhon.jpeg');"></div>
+
+        <div class="col-lg-6 order-lg-2 text-white showcase-img"   style="background-image: url('static/img/bg-showcase-2.jpg');"></div>
         <div class="col-lg-6 order-lg-1 my-auto showcase-text">
-          <h2>Место занятий</h2>
-          <p class="lead mb-0">г. Зеленоград, Озерная аллея, 4, бассейн "Орбита"</p>
-          <br>
-          <li><span class="fa-li"><i class="fas fa-check"></i></span>Дети 4-7 лет и неумеющие плавать занимаются в малом бассейне длиной 16м и глубиной от 0,8 до 1,2м </li>
-          <br>
-          <li><span class="fa-li"><i class="fas fa-check"></i></span>Дети от 7 лет занимаются в спортивном бассейне длиной 25м</li>
+        <h2>О нас</h2>
+
+          <p class="lead mb-0">Наша семейная школа плавания в Зеленограде, г. Москва, предлагает безопасные и увлекательные
+            программы по плаванию для всех возрастов и уровней подготовки, преподаваемые высококвалифицированными
+            тренерами с использованием новейших методик обучения. Мы гордимся тем, что являемся частью зеленоградского
+            сообщества и предлагаем обучение плаванию самого высокого качества. Присоединяйтесь к нам в бассейне и
+            позвольте нам помочь вам достичь ваших целей в плавании!
+          </p>
+            <a href="/new-customer-request" class="btn btn-primary text-uppercase mt-4 w-50">Записаться!</a>
         </div>
+      </div>
+    </div>
+  </section>
+
+    <!-- Image Showcases -->
+  <section id="place" class="showcase bg-white">
+      <div class="container-fluid p-0">
+          <div class="row no-gutters">
+              <div class="col-lg-6 order-lg-1 text-white showcase-img" style="background-image: url('static/img/orbita.jpeg');"></div>
+              <div class="col-lg-6 order-lg-2 my-auto showcase-text">
+                  <h2 style="margin-bottom: 20px;"> Место занятий</h2>
+                  <p class="lead mb-0">Мы предлагаем уроки плавания в двух бассейнах. Первый бассейн предназначен для
+                    начинающих пловцов и маленьких детей, а второй - 25-метровый - для опытных пловцов и детей постарше.
+                    Начинающие пловцы учатся в первом бассейне и переходят во второй, как только смогут уверенно
+                    проплыть 25м вольным стилем или на спине. Наша школа плавания находится в бассейне "Орбита"
+                    на Озерной аллее, 6, г. Зеленоград. <br><br>
+                  </p>
+                  <div style="width: 100%; height: 250px;">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1655.881336819746!2d37.226719162186455!3d55.98735302640061!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46b515a737e8ce65%3A0xe2625cece82bc31e!2z0J7Qt9C10YDQvdCw0Y8g0LDQu9C70LXRjywgNiwg0JfQtdC70LXQvdC-0LPRgNCw0LQsINCc0L7RgdC60LLQsCwg0KDQvtGB0YHQuNGPLCAxMjQ0ODk!5e0!3m2!1sru!2sde!4v1676754187287!5m2!1sru!2sde" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>                  </div>
+              </div>
+          </div>
       </div>
   </section>
 
-    <!-- teachers -->
-  <section class="testimonials text-center bg-white">
+
+    <!-- This snippet uses Font Awesome 5 Free as a dependency. You can download it at fontawesome.io! -->
+  <section id="services" class="pricing text-center" style="padding: 112px;">
     <div class="container">
-      <h2 class="mb-5">Тренеры</h2>
+      <h2 class="mb-5">Услуги</h2>
+      <div class="row d-flex">
+        <!-- 4 trainings Tier -->
+        <div class="col-lg-4">
+          <div class="card mb-5 mb-lg-0 flex-column">
+            <div class="card-body">
+              <h5 class="card-title text-muted text-uppercase text-center">Абонемент на 4 занятия</h5>
+              <h6 class="card-price text-center">3800<span class="period"> р/абонемент</span></h6>
+              <hr>
+              <ul class="fa-ul text-left">
+                <li><span class="fa-li"><i class="fas fa-check"></i></span>У каждой группы свой тренер</li>
+                <li><span class="fa-li"><i class="fas fa-check"></i></span>В группе 8 человек</li>
+                <li><span class="fa-li"><i class="fas fa-check"></i></span>Все оборудование включено (доски, колобашки, пояса и тд)</li>
+              </ul>
+              <a href="/new-customer-request" id="oneTimeAWeekTraining" class="btn btn-block btn-primary text-uppercase">Записаться!</a>
+            </div>
+          </div>
+        </div>
+        <!-- 8 trainings Tier -->
+        <div class="col-lg-4">
+          <div class="card mb-5 mb-lg-0 flex-column">
+            <div class="card-body">
+              <h5 class="card-title text-muted text-uppercase text-center">Абонемент на 8 занятий</h5>
+              <h6 class="card-price text-center">7300<span class="period"> р/абонемент</span></h6>
+              <hr>
+              <ul class="fa-ul text-left">
+                <li><span class="fa-li"><i class="fas fa-check"></i></span>У каждой группы свой тренер</li>
+                <li><span class="fa-li"><i class="fas fa-check"></i></span>В группе 8 человек</li>
+                <li><span class="fa-li"><i class="fas fa-check"></i></span>Все оборудование включено (доски, колобашки, пояса и тд)</li>
+              </ul>
+              <a href="/new-customer-request" id="twoTimesAWeekTraining" class="btn btn-block btn-primary text-uppercase">Записаться!</a>
+            </div>
+          </div>
+        </div>
+        <!-- Individual Tier -->
+        <div class="col-lg-4">
+          <div class="card mb-5 mb-lg-0 flex-column">
+            <div class="card-body">
+               <h5 class="card-title text-muted text-uppercase text-center">1 индивидуальное занятие</h5>
+              <h6 class="card-price text-center">2500<span class="period"> р/занятие</span></h6>
+              <hr>
+              <ul class="fa-ul text-left">
+                <li><span class="fa-li"><i class="fas fa-check"></i></span><strong>1 занятие в бассейне 45 мин</strong></li>
+                <li><span class="fa-li"><i class="fas fa-check"></i></span>Тренер вместе с ребенком в воде</li>
+                <li><span class="fa-li"><i class="fas fa-check"></i></span>Все оборудование включено (доски, колобашки, пояса и тд)</li>
+              </ul>
+              <a href="/new-customer-request" id="personalTraining" class="btn btn-block btn-primary text-uppercase">Записаться!</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+    <!-- teachers -->
+  <section id="team" class="testimonials text-center bg-white">
+    <div class="container">
+      <h2 class="mb-5">Команда</h2>
       <div class="row">
         <div class="col-lg-4">
           <div class="testimonial-item mx-auto mb-5 mb-lg-0">
             <img class="img-fluid rounded-circle mb-3" src="static/img/natalya.jpg" alt="научиться плавать">
             <h5>Наталья</h5>
-            <p class="font-weight-light mb-0">Магистр педагогики РГУФК <br>
+            <p class="font-weight-light mb-0">Магистр спорта<br>
               Руководитель
             </p>
           </div>
@@ -168,8 +543,9 @@
           <div class="testimonial-item mx-auto mb-5 mb-lg-0">
             <img class="img-fluid rounded-circle mb-3" src="static/img/Evgenii.jpg" alt="научиться плавать">
             <h5>Евгений</h5>
-            <p class="font-weight-light mb-0">МС по подводному спорту<br>
-              Тренер
+            <p class="font-weight-light mb-0">Мастер спорта по подводному спорту<br>
+              Кандидат педагогических наук <br>
+              Методист
             </p>
           </div>
         </div>
@@ -177,7 +553,7 @@
           <div class="testimonial-item mx-auto mb-5 mb-lg-0">
             <img class="img-fluid rounded-circle mb-3" src="static/img/Alex.jpg" alt="научиться плавать">
             <h5>Александр</h5>
-            <p class="font-weight-light mb-0">МС по плаванию <br>
+            <p class="font-weight-light mb-0">Мастер спорта по плаванию <br>
              Тренер
             </p>
           </div>
@@ -212,217 +588,88 @@
     </div>
   </section>
 
-  <!-- Icons Grid -->
-  <section class="features-icons bg-light text-center">
+
+  <section id="testimonials" class="testimonials text-center">
     <div class="container">
-      <div class="row">
-        <div class="col-lg-4">
-          <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
-            <div class="features-icons-icon d-flex">
-              <i class="icon-like m-auto text-primary"></i>
-            </div>
-            <h3>Качество</h3>
-            <p class="lead mb-0">Обучаем плаванию уже 8 лет</p>
-          </div>
-        </div>
-        <div class="col-lg-4">
-          <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
-            <div class="features-icons-icon d-flex">
-              <i class="icon-heart m-auto text-primary"></i>
-            </div>
-            <h3>Лояльность</h3>
-            <p class="lead mb-0">Нас знают, нам доверяют, <br>к нам возвращаются</p>
-          </div>
-        </div>
-        <div class="col-lg-4">
-          <div class="features-icons-item mx-auto mb-0 mb-lg-3">
-            <div class="features-icons-icon d-flex">
-              <i class="icon-check m-auto text-primary"></i>
-            </div>
-            <h3>Результат</h3>
-            <p class="lead mb-0">Ваш успех — наша ценность</p>
-          </div>
-        </div>
-      </div>
+      <h2 class="mb-5 disabled">Отзывы
+        <span class="soon-text-h2">скоро</span>
+      </h2>
+        <p class="disabled">
+          Этот раздел все еще находится в процессе разработки и будет доступен в ближайшем будущем. <br>
+          Мы приносим извинения за возможные неудобства и ценим ваше терпение.
+        </p>
     </div>
   </section>
 
-  <!-- Image Showcases -->
-  <section class="showcase">
+  <section id="contacts" class="showcase bg-white">
     <div class="container-fluid p-0">
-      <div class="row no-gutters">
-
-        <div class="col-lg-6 order-lg-2 text-white showcase-img"   style="background-image: url('static/img/bg-showcase-1.jpg');"></div>
-        <div class="col-lg-6 order-lg-1 my-auto showcase-text">
-          <h2>Методика, опробированная годами</h2>
-          <p class="lead mb-0">Наша методика разработана Евгением Сауровым, который доказал ее эффективность на своем примере, выступая за сборную РФ с 2015 года. После, в 2018 году, с красными дипломом закончил РГУФК и продолжает исследовательскую деятельность в аспирантуре.</p>
-        </div>
-      </div>
-      <div class="row no-gutters">
-        <div class="col-lg-6 text-white showcase-img" style="background-image: url('static/img/bg-showcase-2.jpg');"></div>
-        <div class="col-lg-6 my-auto showcase-text">
-          <h2>Плавание — больше, чем спорт</h2>
-          <p class="lead mb-0">Для нас плавание — нечто большее, чем соревнование. Это стиль жизни, постоянное развитие, работа над собой и здоровье на всю жизнь.</p>
-        </div>
-      </div>
       <div class="row no-gutters">
         <div class="col-lg-6 order-lg-2 text-white showcase-img" style="background-image: url('static/img/bg-showcase-3.jpg');"></div>
         <div class="col-lg-6 order-lg-1 my-auto showcase-text">
-          <h2>Надежная команда</h2>
-          <p class="lead mb-0">Человеческий ресурс — наш главный актив. Мы тщательно подходим к подбору персонала и ставим постоянное развитие и профессионализм на первое место.</p>
+          <h2 style="margin-bottom: 20px;">Контакты</h2>
+          <p class="lead mb-0">
+            Мы доступны по телефону +7-910-462-59-25:<br><br>
+            <a href="tel:+79104625925" class="btn btn-primary text-uppercase">Позвонить!</a><br><br>
+<!--            с 9:00 до 21:00 часа,<br>-->
+            а также в мессенджерах Telegram и Whats App:<br><br>
+            <a href="tg://resolve?domain=esaurov" class="btn btn-primary text-uppercase">Написать в Telegram</a><br><br>
+            <a href="https://wa.me/79104625925" class="btn btn-primary text-uppercase">Написать в WhatsApp</a><br><br>
+
+            Иногда мы не можем ответить на звонок,<br>
+            когда проводим занятия плаванием,<br>
+            но обязательно перезвоним,<br>
+            как только освободимся.
+          </p>
         </div>
       </div>
     </div>
   </section>
 
-
-    <!-- New testimonials -->
-<section class="container-xl bg-light text-center">
-    <link rel="stylesheet" href="static/css/testimonials.css">
-	  <div class="row">
-		<div class="col-lg-8 mx-auto">
-           <h4 class="mb-5">Отзывы</h4>
-			<div id="myCarousel" class="carousel slide" data-ride="carousel">
-				<!-- Carousel indicators -->
-				<ol class="carousel-indicators">
-					<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-					<li data-target="#myCarousel" data-slide-to="1"></li>
-					<li data-target="#myCarousel" data-slide-to="2"></li>
-				</ol>
-				<!-- Wrapper for carousel items -->
-				<div class="carousel-inner">
-					<div class="carousel-item active">
-						<div class="img-box"><img src="static/img/tatiana.jpg" alt=""></div>
-						<p class="testimonial">Мои дети ходят в группу по плаванию в школу "Быстрый Дельфин" уже целый год и просто в восторге от неё. Здесь добрые и отзывчивые тренеры, если у детей возникают вопросы или проблемы - они всегда готовы помочь. Так же с той подготовкой, которую здесь дают в будущем можно добиться немалых успехов. Мой сын, например, за один год занятий смог получить 3-й юношеский разряд. Огромное спасибо за терпение, доброжелательностьи хорошее настроение всему коллективу школы "Быстрый Дельфин ".</p>
-						<p class="overview"><b>Татьяна</b></p>
-					</div>
-					<div class="carousel-item">
-						<div class="img-box"><img src="static/img/maria.jpg" alt=""></div>
-						<p class="testimonial">Ребёнок очень любит ходить на тренировки в "Быстрый дельфин")))отличный тренерский состав!!!спасибо!!!🌺</p>
-						<p class="overview"><b>Мария</b></p>
-					</div>
-					<div class="carousel-item">
-						<div class="img-box"><img src="static/img/ekaterina.jpg" alt=""></div>
-						<p class="testimonial">
-                         Моя дочь занималась в "быстром дельфине" один год, до этого год ходили на занятия по оздоровительному плаванию в другое место.
-                         Чем нас привлекла эта школа - молодые инициативные тренеры, которые всегда поддерживали дочь;
-                         система награждений, ребенок гордится своими достижениями, а они есть у Всех! Но при этом нет работы на износ, нет проигравших, как в спортивной секции. Это не оздоровительно плавание, где тренер, по сути, сидит, а дети плавают, кто как умеет.
-                         Своим знакомым мы рекомендуем эти занятия, так как здесь научат не просто плавать, но и привьют интерес к этому виду спорта, научат здоровому образу жизни! Ребенок увидит пример, к которому нужно стремиться!</p>
-						<p class="overview"><b>Екатерина</b></p>
-					</div>
-                  <div class="carousel-item">
-						<div class="img-box"><img src="static/img/Elizaveta.jpg" alt=""></div>
-						<p class="testimonial">
-                         Женя вел взрослую группу в течение месяца. Он прекрасно выстроил тренировочный процесс и смог уделить достаточно времени каждому, кто у него занимался в группе. Техника и результаты всего за месяц улучшились. Была бы группа для взрослых, обязательно продолжила бы к нему ходить!</p>
-						<p class="overview"><b>Елизавета</b></p>
-                  </div>
-                  <div class="carousel-item">
-						<div class="img-box"><img src="static/img/Ulia.jpg" alt=""></div>
-						<p class="testimonial">
-                         Женя Сауров... необычайный и необычный! В самых лучших проявлениях человека и педагога! Если вы хотите научить ребенка плавать, стремиться в жизни к успеху - вам к Жене!!! Спасибо, тебе! Самых высоких достижений во всём!
-						<p class="overview"><b>Юлия</b></p>
-                  </div>
-                   <div class="carousel-item">
-						<div class="img-box"><img src="static/img/alina.jpg" alt=""></div>
-						<p class="testimonial">
-                         Сегодня посетили первый открытый урок. Эмоции и гордость переполняют. Сын отходил только 8 занятий, и такие результаты. Мое восхищение не имеет границ. Как можно так быстро научить плавать???
-                         Дочка с огромным удовольствием бежит на тренировку. Тренер все очень понятно объясняет, смог быстро  найти общий язык со всеми ребятами, они от него пищат от радости. Только хорошее слышу про эту школу, позитив и заряд эмоций ребенка после тренеровок - это главное для родителей.
-                          Всем очень довольны, огромное спасибо за отличную тренерскую команду, доброту и требовательность к ученикам.
-                        <p class="overview"><b>Алина</b></p>
-                   </div>
-                  <div class="carousel-item">
-						<div class="img-box"><img src="static/img/Anna.png" alt=""></div>
-						<p class="testimonial">
-                        Пришли со страхом воды. Сперва давалось тяжело, но тренеры не сдавались, за что им огромное спасибо! За полгода занятий мой сын смог освоиться и проплывал целый бассейн кролем. Планируем продолжать занятия.
-                        <p class="overview"><b>Анна</b></p>
-                   </div>
-                <div class="carousel-item">
-						<div class="img-box"><img src="static/img/Ekat.png" alt=""></div>
-						<p class="testimonial">
-                        У нас через руки тренеров Быстрого Дельфина прошла вся семья. Сперва младшего отдали, хотели научить плавать. Ему понравилось, и старший к нему присоединился — очень хорошо для поддержания формы и отвлечения от экрана. Мы с мужем сперва просто ходили в бассейн на свободное плавание, а потом решились на индивидуальные занятия.
-                          Тренер Мария очень чутко и с понимания отнеслась к нашей "спортивной форме". В итоге всей семьей стали уверенными пловцами!!! Спасибо!
-                        <p class="overview"><b>Екатерина</b></p>
-                   </div>
-                </div>
-
-
-				<!-- Carousel controls -->
-				<a class="carousel-control-prev" href="#myCarousel" data-slide="prev">
-					<i class="fa fa-angle-left"></i>
-				</a>
-				<a class="carousel-control-next" href="#myCarousel" data-slide="next">
-					<i class="fa fa-angle-right"></i>
-				</a>
-			</div>
-		</div>
-	</div>
-</section>
-
-  <!-- Call to Action -->
-  <section class="call-to-action text-white text-center">
-    <div class="overlay"></div>
-    <div class="container">
-      <div class="row">
-        <div class="col-xl-9 mx-auto">
-          <h2 class="mb-4">Готовы записаться? <br>
-          </h2>
-        </div>
-        <div class="col-md-10 col-lg-8 col-xl-7 mx-auto">
-          <form>
-            <div class="form-row">
-              <div class="col-12 col-md-9 mb-2 mb-md-0">
-                <input type="email" class="form-control form-control-lg" placeholder="Ныряйте с нами!">
-              </div>
-              <div class="col-12 col-md-3">
-                <a class="btn btn-block btn-lg btn-primary" href="https://forms.gle/JRrPDaxx8FXeELN6AƒYfnf">Записаться!</a>
-              </div>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-  </section>
 
   <!-- Footer -->
-  <footer class="footer bg-light">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-6 h-100 text-center text-lg-left my-auto">
-          <ul class="list-inline mb-2">
-            <li class="list-inline-item">
-              <a href="tos">Политика конфиденциальности</a>
-            </li>
-            <li class="list-inline-item">
-              <a href="rules">Правила школы</a>
-            </li>
-             <li class="list-inline-item">
-              <a href="workout">Дневник тренировок</a>
-            </li>
-          </ul>
-          <p class="text-muted small mb-4 mb-lg-0">&copy;Сайт школы плавания "Быстрый Дельфин" 2022. Все права защищены.</p>
-        </div>
-        <div class="col-lg-6 h-100 text-center text-lg-right my-auto">
-          <ul class="list-inline mb-0">
-            <li class="list-inline-item mr-3">
-              <a href="https://www.facebook.com/saurovan">
-                <i class="fab fa-facebook fa-2x fa-fw"></i>
-              </a>
-            </li>
-            <li class="list-inline-item mr-3">
-              <a href="https://vk.com/saurova_n">
-                <i class="fab fa-vk fa-2x fa-fw"></i>
-              </a>
-            </li>
-            <li class="list-inline-item">
-              <a href="https://www.instagram.com/nataliasaurova/">
-                <i class="fab fa-instagram fa-2x fa-fw"></i>
-              </a>
-            </li>
-          </ul>
-        </div>
+<footer>
+  <div class="container text-center">
+    <div class="row">
+      <div class="col-12 mb-4">
+        <p class="mb-3">Подписывайтесь на нас в социальных сетях!</p>
+        <ul class="list-inline social-icons">
+          <li class="list-inline-item mr-4">
+            <a href="https://vk.com/fast_dolphin">
+              <i class="fab fa-vk fa-3x"></i>
+            </a>
+          </li>
+          <li class="list-inline-item soon-icon disabled">
+            <a href="">
+              <i class="fab fa-youtube fa-3x"></i>
+                <span class="soon-text-icon">скоро</span>
+            </a>
+          <li class="list-inline-item soon-icon disabled">
+            <a href="">
+              <i class="fab fa-telegram fa-3x"></i>
+              <span class="soon-text-icon">скоро</span>
+            </a>
+          </li>
+        </ul>
       </div>
     </div>
-  </footer>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container justify-content-center">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a href="privacy">Политика конфиденциальности</a>
+          </li>
+          <li class="nav-item">
+            <a href="rules">Правила школы</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <p class="text-muted small mt-4">&copy; 2012-2023 <a href="http://www.fast-dolphin.com/">"Быстрый Дельфин"</a><br>
+        Все права защищены.</p>
+  </div>
+  <script src="static/js/setDefaultLessonType.js"></script>
+
+</footer>
 </body>
 </html>
 

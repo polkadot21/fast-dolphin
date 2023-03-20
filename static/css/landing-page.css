@@ -1,9 +1,3 @@
-/*!
- * Start Bootstrap - Школа математики онлайн v5.0.7 (https://startbootstrap.com/template-overviews/landing-page)
- * Copyright 2013-2022 Start Bootstrap
- * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-landing-page/blob/master/LICENSE)
- */
-
 body {
   font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
@@ -21,7 +15,7 @@ h6 {
 header.masthead {
   position: relative;
   background-color: #343a40;
-  background: url("../img/pool_dive.jpg") no-repeat center center;
+  /*background: url("../img/pool_dive.jpg") no-repeat center center;*/
   background-size: cover;
   padding-top: 8rem;
   padding-bottom: 8rem;
@@ -37,6 +31,8 @@ header.masthead .overlay {
 }
 header.masthead h1 {
   font-size: 2rem;
+  position: absolute;
+  top: 0;
 }
 @media (min-width: 768px) {
   header.masthead {
@@ -45,6 +41,8 @@ header.masthead h1 {
   }
   header.masthead h1 {
     font-size: 3rem;
+    position: absolute;
+    top: 0;
   }
 }
 
@@ -93,7 +91,7 @@ header.masthead h1 {
 .call-to-action {
   position: relative;
   background-color: #343a40;
-  background: url("../img/pool_dive.jpg") no-repeat center center;
+  /*background: url("../img/pool_dive.jpg") no-repeat center center;*/
   background-size: cover;
   padding-top: 7rem;
   padding-bottom: 7rem;

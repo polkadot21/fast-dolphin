@@ -2,3 +2,6 @@ fastapi
 uvicorn
 jinja2
 httpx
+pyhere
+mangum
+pytest
