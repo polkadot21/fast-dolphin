@@ -411,6 +411,15 @@
       box-sizing: border-box;
     }
 
+    #request-form input.invalid-email {
+      border: 1px solid red;
+    }
+
+    #request-form input.invalid-email:focus {
+      border: 2px solid red; /* Adjust the border width as needed */
+      outline: none; /* Optionally, remove the default focus outline */
+    }
+
     .full-phone-number {
       display: flex;
       flex-direction: row;
@@ -480,7 +489,6 @@
       display: inline-block;
     }
 
-
   </style>
 </head>
 <body>
@@ -531,7 +539,7 @@
   <h1 class="center-heading">Оставить новую заявку</h1>
 <form id="request-form">
   <label for="email">Эл. почта:</label>
-    <input type="text" id="email" name="email" required><br>
+    <input type="text" id="email" name="email" required onkeyup="checkEmail(this)"><br>
   <label for="firstName">Имя:</label>
     <input type="text" id="firstName" name="firstName" required><br>
   <label for="surName">Фамилия:</label>
@@ -595,9 +603,12 @@
   // Enable/disable the registration button based on form validity
   const form = document.getElementById('request-form');
   const button = form.querySelector('button[type="submit"]');
+  const emailInput = document.getElementById('email');
+
 
   form.addEventListener('input', function () {
-    button.disabled = !form.checkValidity();
+    const isEmailInvalid = emailInput.classList.contains('invalid-email');
+    button.disabled = !form.checkValidity() || isEmailInvalid;
   });
 
   function updateCountryCode() {
@@ -608,7 +619,26 @@
 
   }
 
+  function isValidEmail(email) {
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    return emailRegex.test(email);
+  }
+
+  function checkEmail(input) {
+    console.log("checkEmail is called");
+    let email = input.value;
+    if (!isValidEmail(email)) {
+      input.classList.add('invalid-email');
+      console.log("the email is invalid");
+    } else {
+      input.classList.remove('invalid-email');
+      console.log("the email is valid");
+    }
+   }
+
+
   function formatPhoneNumber(input) {
+    console.log("formatPhoneNumber is called");
     // Remove all non-numeric characters from the input
     let phoneNumber = input.value.replace(/\D/g, '');
 
