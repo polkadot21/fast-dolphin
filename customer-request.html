@@ -700,6 +700,8 @@
     const countryCodeInput = document.getElementById('countryCode');
     const countryCode = countryCodeInput.options[countryCodeInput.selectedIndex].value;
     const formattedPhoneNumber = phoneNumberInput.value;
+    const cleanedPhoneNumber = formattedPhoneNumber.replace(/\D+/g, '');
+
 
     const data = {
       Email: emailInput.value,
@@ -707,7 +709,7 @@
       Surname: surNameInput.value,
       KidsName: kidFirstNameInput.value,
       KidsSurname: kidSurNameInput.value,
-      PhoneNumber: `${countryCode}${formattedPhoneNumber}`,
+      PhoneNumber: `${countryCode}${cleanedPhoneNumber}`,
       numberOfLessonsWeekly: numberOfLessons,
       typeOfLessons: typeOfLesson,
       SwimmingLevel: swimmingLevelInput.value,
