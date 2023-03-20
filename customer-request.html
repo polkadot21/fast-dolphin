@@ -674,6 +674,28 @@
     const canSwimInput = document.getElementById('canSwim');
     const hasTakenCourseInput = document.getElementById('hasTakenCourse');
     const lessonTypeInput = document.getElementById('lessonType');
+    let numberOfLessonsWeekly;
+    let typeOfLessons;
+
+    switch (lessonTypeInput.value) {
+      case 'oneTimeAWeekTraining':
+        numberOfLessonsWeekly = 1;
+        typeOfLessons = 'group';
+        break;
+      case 'twoTimesAWeekTraining':
+        numberOfLessonsWeekly = 2;
+        typeOfLessons = 'group';
+        break;
+      case 'personalTraining':
+        numberOfLessonsWeekly = 1; // Adjust this value based on your requirements for personal training
+        typeOfLessons = 'personal';
+        break;
+      default:
+        console.error('Invalid lesson type input');
+    }
+
+    const numberOfLessons = numberOfLessonsWeekly;
+    const typeOfLesson = typeOfLessons;
 
     const countryCodeInput = document.getElementById('countryCode');
     const countryCode = countryCodeInput.options[countryCodeInput.selectedIndex].value;
@@ -686,10 +708,11 @@
       KidsName: kidFirstNameInput.value,
       KidsSurname: kidSurNameInput.value,
       PhoneNumber: `${countryCode}${formattedPhoneNumber}`,
+      numberOfLessonsWeekly: numberOfLessons,
+      typeOfLessons: typeOfLesson,
       SwimmingLevel: swimmingLevelInput.value,
       canSwim: canSwimInput.value === 'true',
       hasTakenCourses: hasTakenCourseInput.value === 'true',
-      LessonType: lessonTypeInput.value,
     };
     localStorage.setItem('firstName', firstNameInput.value); // Store the firstNameInput value in local storage
     sendData(data);
