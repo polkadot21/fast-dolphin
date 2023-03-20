@@ -603,9 +603,12 @@
   // Enable/disable the registration button based on form validity
   const form = document.getElementById('request-form');
   const button = form.querySelector('button[type="submit"]');
+  const emailInput = document.getElementById('email');
+
 
   form.addEventListener('input', function () {
-    button.disabled = !form.checkValidity();
+    const isEmailInvalid = emailInput.classList.contains('invalid-email');
+    button.disabled = !form.checkValidity() || isEmailInvalid;
   });
 
   function updateCountryCode() {
