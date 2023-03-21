@@ -411,12 +411,56 @@
       box-sizing: border-box;
     }
 
-    #request-form input.invalid-email {
+    #request-form input[type=checkbox] {
+      display: block;
+      box-sizing: border-box;
+      padding: 12px 20px;
+      margin: 8px 0;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    #request-form input.form-check-input:checked {
+      border: 2px solid green;
+    }
+
+    #request-form input.form-check-input {
+      border: 10px solid red;
+    }
+
+    #request-form input.invalid-input {
       border: 1px solid red;
     }
 
-    #request-form input.invalid-email:focus {
+    #request-form input.valid-input {
+      border: 1px solid limegreen;
+    }
+
+    #request-form input.invalid-input:focus {
       border: 2px solid red; /* Adjust the border width as needed */
+      outline: none; /* Optionally, remove the default focus outline */
+    }
+
+    #request-form input.valid-input:focus {
+      border: 2px solid limegreen; /* Adjust the border width as needed */
+      outline: none; /* Optionally, remove the default focus outline */
+    }
+
+    #request-form select.invalid-input {
+      border: 1px solid red;
+    }
+
+    #request-form select.valid-input {
+      border: 1px solid limegreen;
+    }
+
+    #request-form select.invalid-input:focus {
+      border: 2px solid red; /* Adjust the border width as needed */
+      outline: none; /* Optionally, remove the default focus outline */
+    }
+
+    #request-form select.valid-input:focus {
+      border: 2px solid limegreen; /* Adjust the border width as needed */
       outline: none; /* Optionally, remove the default focus outline */
     }
 
@@ -462,8 +506,12 @@
       flex: 3;
     }
 
-    #phone-error {
-      margin-top: 8px;
+    .form-check-text-tos {
+      margin-left: 51px;
+    }
+
+    .form-check-text-privacy {
+      margin-left: 115px;
     }
 
     .center-heading {
@@ -541,28 +589,26 @@
   <label for="email">Эл. почта:</label>
     <input type="text" id="email" name="email" required onkeyup="checkEmail(this)"><br>
   <label for="firstName">Имя:</label>
-    <input type="text" id="firstName" name="firstName" required><br>
+    <input type="text" id="firstName" name="firstName" required onkeyup="checkInputField(this)"><br>
   <label for="surName">Фамилия:</label>
-    <input type="text" id="surName" name="surName" required><br>
+    <input type="text" id="surName" name="surName" required onkeyup="checkInputField(this)"><br>
   <label for="kidFirstName">Имя ребенка:</label>
-    <input type="text" id="kidFirstName" name="kidFirstName" required><br>
+    <input type="text" id="kidFirstName" name="kidFirstName" required onkeyup="checkInputField(this)"><br>
   <label for="kidSurName">Фамилия ребенка:</label>
-    <input type="text" id="kidSurName" name="kidSurName" required><br>
+    <input type="text" id="kidSurName" name="kidSurName" required onkeyup="checkInputField(this)"><br>
   <label for="phoneNumber">Номер телефона:</label>
   <div class="full-phone-number">
     <select id="countryCode" name="countryCode" onchange="updateCountryCode()">
-      <option value="+7" data-country="Россия" data-code="7" data-flag="https://flagsapi.com/RU/flat/24.png">+7</option>
-      <option value="+49" data-country="Германия" data-code="49" data-flag="https://www.countryflags.io/de/flat/24.png">+49</option>
-      <option value="+86" data-country="Китай" data-code="86" data-flag="https://www.countryflags.io/cn/flat/24.png">+86</option>
+      <option value="+7" data-country="Россия" data-code="7">+7</option>
+      <option value="+49" data-country="Германия" data-code="49">+49</option>
+      <option value="+86" data-country="Китай" data-code="86">+86</option>
     <!-- Add more countries as needed -->
     </select>
     <input type="text" id="phoneNumber" name="phoneNumber" required onkeyup="formatPhoneNumber(this)"><br>
-    <div id="phone-error" style="color: red;"></div>
   </div>
 
-
   <label for="swimmingLevel">Уровень плавания:</label>
-    <input type="text" id="swimmingLevel" name="swimmingLevel" required><br>
+    <input type="text" id="swimmingLevel" name="swimmingLevel" required onkeyup="checkInputField(this)"><br>
 
   <label for="canSwim">Ваш ребенок держится на воде?</label>
       <select id="canSwim" name="canSwim">
@@ -584,18 +630,20 @@
       </select>
   <script src="static/js/getDefaultLessonType.js"></script>
 
-  <div class="form-check">
+<!--  <div class="form-check">-->
+  <label class="form-check-label" for="terms-of-service">
     <input class="form-check-input" type="checkbox" value="" id="terms-of-service" name="terms-of-service" required>
-    <label class="form-check-label" for="terms-of-service">
+    <div class="form-check-text-tos">
       Я согласен с <a href="#">условиями использования</a>
-    </label>
-  </div>
-  <div class="form-check">
+    </div>
+  </label>
+
+  <label class="form-check-label" for="data-privacy">
     <input class="form-check-input" type="checkbox" value="" id="data-privacy" name="data-privacy" required>
-    <label class="form-check-label" for="data-privacy">
+    <div class="form-check-text-privacy">
       Я согласен с <a href="/privacy">политикой кон-ти</a>
-    </label>
-  </div>
+    </div>
+  </label>
   <button class="btn btn-block btn-primary text-uppercase" type="submit" style="width: 100%; color: white;" disabled>Отправить</button>
 </form>
 
@@ -607,7 +655,7 @@
 
 
   form.addEventListener('input', function () {
-    const isEmailInvalid = emailInput.classList.contains('invalid-email');
+    const isEmailInvalid = emailInput.classList.contains('invalid-input');
     button.disabled = !form.checkValidity() || isEmailInvalid;
   });
 
@@ -624,18 +672,50 @@
     return emailRegex.test(email);
   }
 
+  var inputElementCountryCode = document.getElementById("countryCode");
+  inputElementCountryCode.addEventListener("change", function() { checkInputField(inputElementCountryCode); });
+  inputElementCountryCode.addEventListener("blur", function() { checkInputField(inputElementCountryCode); });
+
+  var inputElementCanSwim = document.getElementById("canSwim");
+  inputElementCanSwim.addEventListener("change", function() { checkInputField(inputElementCanSwim); });
+  inputElementCanSwim.addEventListener("blur", function() { checkInputField(inputElementCanSwim); });
+
+  var inputElementHasTakenCourse = document.getElementById("hasTakenCourse");
+  inputElementHasTakenCourse.addEventListener("change", function() { checkInputField(inputElementHasTakenCourse); });
+  inputElementHasTakenCourse.addEventListener("blur", function() { checkInputField(inputElementHasTakenCourse); });
+
+  var inputElementLessonType = document.getElementById("lessonType");
+  inputElementLessonType.addEventListener("change", function() { checkInputField(inputElementLessonType); });
+  inputElementLessonType.addEventListener("blur", function() { checkInputField(inputElementLessonType); });
+
+  function isInputFieldEmpty(input) {
+    return input === null || input.trim() === '';
+  }
+
   function checkEmail(input) {
     console.log("checkEmail is called");
     let email = input.value;
     if (!isValidEmail(email)) {
-      input.classList.add('invalid-email');
+      input.classList.remove('valid-input');
+      input.classList.add('invalid-input');
       console.log("the email is invalid");
     } else {
-      input.classList.remove('invalid-email');
+      input.classList.remove('invalid-input');
+      input.classList.add('valid-input');
       console.log("the email is valid");
     }
    }
 
+   function checkInputField(input) {
+    let fieldValue = input.value;
+    if (isInputFieldEmpty(fieldValue)) {
+      input.classList.remove('valid-input');
+      input.classList.add('invalid-input');
+    } else {
+      input.classList.remove('invalid-input');
+      input.classList.add('valid-input');
+    }
+   }
 
   function formatPhoneNumber(input) {
     console.log("formatPhoneNumber is called");
@@ -645,6 +725,8 @@
     // If the phone number starts with a zero, remove it
     if (phoneNumber.startsWith('0')) {
       phoneNumber = phoneNumber.slice(1);
+      input.classList.remove('valid-input');
+      input.classList.add('invalid-input');
     }
 
     // Limit the phone number to 10 digits
@@ -655,19 +737,43 @@
 
     if (phoneNumber.length > 0) {
       formattedPhoneNumber += `(${phoneNumber.slice(0, 3)}`;
+      input.classList.remove('valid-input');
+      input.classList.add('invalid-input');
     }
     if (phoneNumber.length > 3) {
       formattedPhoneNumber += `) ${phoneNumber.slice(3, 6)}`;
+      input.classList.remove('valid-input');
+      input.classList.add('invalid-input');
     }
     if (phoneNumber.length > 6) {
       formattedPhoneNumber += `-${phoneNumber.slice(6, 8)}`;
+      input.classList.remove('valid-input');
+      input.classList.add('invalid-input');
     }
     if (phoneNumber.length > 8) {
       formattedPhoneNumber += `-${phoneNumber.slice(8)}`;
+      input.classList.remove('valid-input');
+      input.classList.add('invalid-input');
+    }
+    if (phoneNumber.length === 10) {
+      input.classList.remove('invalid-input');
+      input.classList.add('valid-input');
     }
 
     input.value = formattedPhoneNumber;
   }
+
+
+  const checkbox = document.getElementById("terms-of-service");
+
+  checkbox.addEventListener("change", function() {
+    if (this.checked) {
+      this.classList.add("checked");
+    } else {
+      this.classList.remove("checked");
+    }
+  });
+
 
   function sendData(data) {
   const url = 'http://127.0.0.1:8000/v1/new-requests/';
