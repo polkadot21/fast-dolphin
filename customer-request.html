@@ -673,18 +673,51 @@
   }
 
   var inputElementCountryCode = document.getElementById("countryCode");
+
+  // Add event listeners for the "focus", "blur", and "change" events
+  inputElementCountryCode.addEventListener("focus", function() {
+    // Check if the input element has a non-empty value
+    if (inputElementCountryCode.value !== '') {
+      // Add the "valid-input" class to make the border green
+      inputElementCountryCode.classList.add("valid-input");
+    }
+  });
   inputElementCountryCode.addEventListener("change", function() { checkInputField(inputElementCountryCode); });
   inputElementCountryCode.addEventListener("blur", function() { checkInputField(inputElementCountryCode); });
 
   var inputElementCanSwim = document.getElementById("canSwim");
+  // Add event listeners for the "focus", "blur", and "change" events
+  inputElementCanSwim.addEventListener("focus", function() {
+    // Check if the input element has a non-empty value
+    if (inputElementCanSwim.value !== '') {
+      // Add the "valid-input" class to make the border green
+      inputElementCanSwim.classList.add("valid-input");
+    }
+  });
   inputElementCanSwim.addEventListener("change", function() { checkInputField(inputElementCanSwim); });
   inputElementCanSwim.addEventListener("blur", function() { checkInputField(inputElementCanSwim); });
 
   var inputElementHasTakenCourse = document.getElementById("hasTakenCourse");
+  // Add event listeners for the "focus", "blur", and "change" events
+  inputElementHasTakenCourse.addEventListener("focus", function() {
+    // Check if the input element has a non-empty value
+    if (inputElementHasTakenCourse.value !== '') {
+      // Add the "valid-input" class to make the border green
+      inputElementHasTakenCourse.classList.add("valid-input");
+    }
+  });
   inputElementHasTakenCourse.addEventListener("change", function() { checkInputField(inputElementHasTakenCourse); });
   inputElementHasTakenCourse.addEventListener("blur", function() { checkInputField(inputElementHasTakenCourse); });
 
   var inputElementLessonType = document.getElementById("lessonType");
+  // Add event listeners for the "focus", "blur", and "change" events
+  inputElementLessonType.addEventListener("focus", function() {
+    // Check if the input element has a non-empty value
+    if (inputElementLessonType.value !== '') {
+      // Add the "valid-input" class to make the border green
+      inputElementLessonType.classList.add("valid-input");
+    }
+  });
   inputElementLessonType.addEventListener("change", function() { checkInputField(inputElementLessonType); });
   inputElementLessonType.addEventListener("blur", function() { checkInputField(inputElementLessonType); });
 
