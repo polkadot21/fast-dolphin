@@ -823,12 +823,22 @@
         window.location.href = '/successfully-submitted';
       } else if (response.status === 409) {
         alert("You have already sent this request");
+      } else if (response.status === 400) {
+        return response.json()
+                .then(data => {
+                  if (data.detail === "The email has an invalid format.") {
+                    alert("Please enter a valid email address.");
+                  } else {
+                    console.log('Error:', data);
+                  }
+                })
+      } else{
+        console.log('Error:', data);
       }
-      return response.json();
     })
     .then(data => console.log('Success:', data))
     .catch(error => console.error('Error:', error));
-}
+  }
 
   function submitForm(event) {
     event.preventDefault();
