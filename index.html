@@ -378,6 +378,25 @@
         display: none;
       }
 
+      @media (max-width: 767px) {
+        #logo-container {
+          top: 0;
+          left: 0;
+          width: 100%;
+          text-align: center;
+          margin-bottom: 0;
+        }
+      }
+
+    @media (max-width: 767px) {
+      .navbar-toggler-wrapper {
+        position: fixed;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 9999;
+      }
+    }
+
   </style>
 </head>
 <body>
@@ -428,16 +447,18 @@
 
   <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
     <div class="row w-100 align-items-center">
-      <div class="col-3 col-md-3">
+      <div class="col-12 col-md-3" id="logo-container">
         <a class="navbar-brand" href="/">
           <img src="static/img/logo_2.0.png" alt="Быстрый Дельфин" class="logo">
           Быстрый Дельфин
         </a>
       </div>
       <div class="col-6 col-md-6 text-center">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
+        <div class="navbar-toggler-wrapper">
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+        </div>
         <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
           <ul class="navbar-nav">
             <li class="nav-item">
@@ -467,29 +488,39 @@
     </div>
   </nav>
 
+  <div class="jumbotron jumbotron-fluid">
+    <div class="container">
+      <h1 class="display-4" id="main-title">Школа плавания "Быстрый Дельфин"</h1>
+      <p class="lead">Мы поможем вам освоить плавание и достичь лучших результатов в кратчайшие сроки. Присоединяйтесь к нам прямо сейчас!</p>
+    </div>
+  </div>
+
   <script>
     const navbarToggler = document.querySelector('.navbar-toggler');
     const loginLink = document.querySelector('#login-link');
     const loginColumn = document.querySelector('#login-column');
+    const logoContainer = document.querySelector('#logo-container');
+    const navBar = document.querySelector('.navbar')
+    const mainTitle = document.querySelector('#main-title')
+
 
     window.addEventListener('resize', () => {
       if (getComputedStyle(navbarToggler).display !== 'none') {
         loginColumn.style.display = 'none';
         loginLink.style.display = 'block';
+        logoContainer.style.marginBottom = '10px';
+        navBar.style.padding = '3rem 1rem';
+        mainTitle.style.padding = '80px 0';
+
       } else {
         loginLink.style.display = 'none';
         loginColumn.style.display = 'block';
+        logoContainer.style.display = 'block';
+        navBar.style.padding = '0.5rem 1rem';
+        mainTitle.style.padding = '30px 0';
       }
     });
   </script>
-
-
-  <div class="jumbotron jumbotron-fluid">
-    <div class="container">
-      <h1 class="display-4">Школа плавания "Быстрый Дельфин"</h1>
-      <p class="lead">Мы поможем вам освоить плавание и достичь лучших результатов в кратчайшие сроки. Присоединяйтесь к нам прямо сейчас!</p>
-    </div>
-  </div>
 
     <!-- Cookies consent pop-up -->
   <div class="cookies-popup" id="cookiesPopup">
