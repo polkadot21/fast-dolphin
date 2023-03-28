@@ -47,12 +47,14 @@
 
     header h1 {
 
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      height: 100%;
+      padding: 30px 0;
+
     }
 
     header p {
@@ -232,15 +234,20 @@
     }
 
     .navbar-light .navbar-nav .nav-link {
-    color: rgba(0, 0, 0, 0.9);
+      color: rgba(0, 0, 0, 0.9);
+      text-align: center;
     }
 
     .navbar-light .navbar-nav .nav-link:hover, .navbar-light .navbar-nav .nav-link:focus {
       color: rgba(0, 0, 0, 0.7);
+      text-align: center;
+
     }
 
     .navbar-light .navbar-nav .nav-link.disabled {
       color: rgba(0, 0, 0, 0.3);
+      text-align: center;
+
     }
 
     .nav-link.disabled {
@@ -357,6 +364,20 @@
       padding-left: 0.25em;
     }
 
+      #login-link {
+        display: none;
+      }
+      #login-link.show {
+        display: block;
+      }
+      #login-column {
+        display: block;
+      }
+
+      #login-column.hide {
+        display: none;
+      }
+
   </style>
 </head>
 <body>
@@ -364,46 +385,103 @@
 <!--   Masthead-->
 
 <header class="custom-header">
-   <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
-        <div class="row w-100 align-items-center">
-          <div class="col-6 col-md-3">
-            <a class="navbar-brand" href="/">
-              <img src="static/img/logo_2.0.png" alt="Быстрый Дельфин" class="logo">
-              Быстрый Дельфин
-            </a>
-          </div>
-          <div class="col-6 col-md-6 text-center">
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
-              <ul class="navbar-nav">
-                <li class="nav-item">
-                  <a class="nav-link" href="#aboutus">О нас</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#place">Место занятий</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#services">Услуги</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#team">Команда</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#testimonials">Отзывы</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#contacts">Контакты</a>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div class="col-3 col-md-3 text-center">
-            <a class="nav-link disabled" href="#">Войти<span class="soon-text">скоро</span></a>
-          </div>
+<!--   <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">-->
+<!--        <div class="row w-100 align-items-center">-->
+<!--          <div class="col-7 col-md-3">-->
+<!--            <a class="navbar-brand" href="/">-->
+<!--              <img src="static/img/logo_2.0.png" alt="Быстрый Дельфин" class="logo">-->
+<!--              Быстрый Дельфин-->
+<!--            </a>-->
+<!--          </div>-->
+<!--          <div class="col-7 col-md-3 text-center">-->
+<!--            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">-->
+<!--              <span class="navbar-toggler-icon"></span>-->
+<!--            </button>-->
+<!--            <div class="collapse navbar-collapse justify-content-center" id="navbarNav">-->
+<!--              <ul class="navbar-nav">-->
+<!--                <li class="nav-item">-->
+<!--                  <a class="nav-link" href="#aboutus">О нас</a>-->
+<!--                </li>-->
+<!--                <li class="nav-item">-->
+<!--                  <a class="nav-link" href="#place">Место занятий</a>-->
+<!--                </li>-->
+<!--                <li class="nav-item">-->
+<!--                  <a class="nav-link" href="#services">Услуги</a>-->
+<!--                </li>-->
+<!--                <li class="nav-item">-->
+<!--                  <a class="nav-link" href="#team">Команда</a>-->
+<!--                </li>-->
+<!--                <li class="nav-item">-->
+<!--                  <a class="nav-link" href="#testimonials">Отзывы</a>-->
+<!--                </li>-->
+<!--                <li class="nav-item">-->
+<!--                  <a class="nav-link" href="#contacts">Контакты</a>-->
+<!--                </li>-->
+<!--                <li class="nav-item text-right">-->
+<!--                  <a class="nav-link disabled" href="#">Войти<span class="soon-text">скоро</span></a>-->
+<!--                </li>-->
+<!--              </ul>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--  </nav>-->
+
+  <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+    <div class="row w-100 align-items-center">
+      <div class="col-3 col-md-3">
+        <a class="navbar-brand" href="/">
+          <img src="static/img/logo_2.0.png" alt="Быстрый Дельфин" class="logo">
+          Быстрый Дельфин
+        </a>
+      </div>
+      <div class="col-6 col-md-6 text-center">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" href="#aboutus">О нас</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#place">Место занятий</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#services">Услуги</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#team">Команда</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#testimonials">Отзывы</a>
+            </li>
+            <li class="nav-item" id="login-link">
+              <a class="nav-link disabled" href="#">Войти<span class="soon-text">скоро</span></a>
+            </li>
+          </ul>
         </div>
+      </div>
+       <div class="col-3 col-md-3 text-center" id="login-column">
+            <a class="nav-link disabled" href="#">Войти<span class="soon-text">скоро</span></a>
+       </div>
+    </div>
   </nav>
+
+  <script>
+    const navbarToggler = document.querySelector('.navbar-toggler');
+    const loginLink = document.querySelector('#login-link');
+    const loginColumn = document.querySelector('#login-column');
+
+    window.addEventListener('resize', () => {
+      if (getComputedStyle(navbarToggler).display !== 'none') {
+        loginColumn.style.display = 'none';
+        loginLink.style.display = 'block';
+      } else {
+        loginLink.style.display = 'none';
+        loginColumn.style.display = 'block';
+      }
+    });
+  </script>
 
 
   <div class="jumbotron jumbotron-fluid">
