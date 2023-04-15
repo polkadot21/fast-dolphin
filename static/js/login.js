@@ -1,6 +1,6 @@
-const backendUrl = "{{ env.BACKEND_URL }}"
-const version = " {{ env.VERSION }}".trim()
 const fullUrl =  backendUrl + "/" + version + "/" + "auth" + "/" + "access_token/";
+console.log("full url: ")
+console.log(fullUrl);
 const loginForm = document.querySelector('#login-form');
 const usernameInput = document.querySelector('#username');
 const passwordInput = document.querySelector('#password');

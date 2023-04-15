@@ -517,6 +517,11 @@
     <p class="text-muted small mt-4">&copy; 2012-2023 <a href="http://www.fast-dolphin.com/">"Быстрый Дельфин"</a><br>
         Все права защищены.</p>
   </div>
+  <script>
+  // Define a global variable with the environment variable value
+    const backendUrl = "{{ env.BACKEND_URL }}";
+    const version = "{{ env.VERSION }}".trim();
+  </script>
   <script src="static/js/login.js"></script>
 
 </footer>
