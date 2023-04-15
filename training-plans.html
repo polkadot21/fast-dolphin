@@ -587,6 +587,18 @@
 </div>
 
 <script>
+  const backendUrl = "{{ env.BACKEND_URL }}"
+    const version = " {{ env.VERSION }}".trim()
+    const fullUrl =  backendUrl + "/" + version + "/" + "training-plan/";
+
+    console.log("backendURL:");
+    console.log(backendUrl);
+    console.log("version: ");
+    console.log(version);
+    console.log("full url:");
+    console.log(fullUrl);
+
+
   // Add an event listener to the submit button
   document.getElementById('query-form').addEventListener('submit', function(event) {
     // Prevent the default form submission behavior
@@ -601,7 +613,8 @@
     const accessToken = localStorage.getItem('access_token');
 
     // Call the endpoint with the access token and input values
-    fetch(`http://127.0.0.1:8000/v1/training-plan/?level=${level}&week=${week}&day=${day}`, {
+    let url = backendUrl + "/" + version + "/" + "training-plan/" + `?level=${level}&week=${week}&day=${day}`
+    fetch(url, {
       method: 'GET',
       headers: {
         'Authorization': `Bearer ${accessToken}`,

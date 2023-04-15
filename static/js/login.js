@@ -1,3 +1,6 @@
+const backendUrl = "{{ env.BACKEND_URL }}"
+const version = " {{ env.VERSION }}".trim()
+const fullUrl =  backendUrl + "/" + version + "/" + "auth" + "/" + "access_token/";
 const loginForm = document.querySelector('#login-form');
 const usernameInput = document.querySelector('#username');
 const passwordInput = document.querySelector('#password');
@@ -6,7 +9,7 @@ loginForm.addEventListener('submit', async (event) => {
 
   // make POST request to obtain access token
   console.log('Sending POST request...');
-  const response = await fetch('http://127.0.0.1:8000/v1/auth/access_token/', {
+  const response = await fetch(fullUrl, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded'

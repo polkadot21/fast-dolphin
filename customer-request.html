@@ -650,8 +650,15 @@
 <script>
 
   const backendUrl = "{{ env.BACKEND_URL }}"
+  const version = "{{ env.VERSION }}".trim()
+  const fullUrl = backendUrl + "/" + version + "/" + "new_requests/";
+
   console.log("backendURL:");
   console.log(backendUrl);
+  console.log("API version:");
+  console.log(version);
+  console.log("full url:");
+  console.log(fullUrl);
 
   // Enable/disable the registration button based on form validity
   const form = document.getElementById('request-form');
@@ -814,34 +821,35 @@
 
 
   function sendData(data) {
-  fetch(backendUrl, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(data)
-  })
-    .then(response => {
-      if (response.status === 200) {
-        window.location.href = '/successfully-submitted';
-      } else if (response.status === 409) {
-        alert("You have already sent this request");
-      } else if (response.status === 400) {
-        return response.json()
-                .then(data => {
-                  if (data.detail === "The email has an invalid format.") {
-                    alert("Please enter a valid email address.");
-                  } else {
-                    console.log('Error:', data);
-                  }
-                })
-      } else{
-        console.log('Error:', data);
-      }
+    let url = backendUrl + "/" + version + "/" + "new_requests/";
+    fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
     })
-    .then(data => console.log('Success:', data))
-    .catch(error => console.error('Error:', error));
-  }
+      .then(response => {
+        if (response.status === 200) {
+          window.location.href = '/successfully-submitted';
+        } else if (response.status === 409) {
+          alert("You have already sent this request");
+        } else if (response.status === 400) {
+          return response.json()
+                  .then(data => {
+                    if (data.detail === "The email has an invalid format.") {
+                      alert("Please enter a valid email address.");
+                    } else {
+                      console.log('Error:', data);
+                    }
+                  })
+        } else{
+          console.log('Error:', data);
+        }
+      })
+      .then(data => console.log('Success:', data))
+      .catch(error => console.error('Error:', error));
+    }
 
   function submitForm(event) {
     event.preventDefault();

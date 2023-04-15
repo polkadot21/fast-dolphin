@@ -29,6 +29,7 @@ load_dotenv()
 # Define a global variable for the environment variables
 env = {
     'BACKEND_URL': os.getenv('BACKEND_URL'),
+    'VERSION': os.getenv('VERSION'),
 }
 
 @app.get("/", response_class=HTMLResponse)
@@ -48,22 +49,22 @@ async def render_rules(request: Request):
 
 @app.get("/login", response_class=HTMLResponse)
 async def login(request: Request):
-    return templates.TemplateResponse("login.html", {"request": request})
+    return templates.TemplateResponse("login.html", {"request": request, "env": env})
 
 
 @app.get("/logout", response_class=HTMLResponse)
 async def render_account(request: Request):
-    return templates.TemplateResponse("logout.html", {"request": request})
+    return templates.TemplateResponse("logout.html", {"request": request, "env": env})
 
 
 @app.get("/account", response_class=HTMLResponse)
 async def render_account(request: Request):
-    return templates.TemplateResponse("account.html", {"request": request})
+    return templates.TemplateResponse("account.html", {"request": request, "env": env})
 
 
 @app.get("/training-plans", response_class=HTMLResponse)
 async def render_account(request: Request):
-    return templates.TemplateResponse("training-plans.html", {"request": request})
+    return templates.TemplateResponse("training-plans.html", {"request": request, "env": env})
 
 
 @app.get("/workout", response_class=HTMLResponse)
