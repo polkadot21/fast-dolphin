@@ -5,3 +5,4 @@ httpx
 pyhere
 mangum
 pytest
+python-dotenv
