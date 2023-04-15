@@ -649,11 +649,6 @@
 
 <script>
 
-  require('dotenv').config();
-
-  const backendUrl = process.env.BACKEND_URL;
-
-
   // Enable/disable the registration button based on form validity
   const form = document.getElementById('request-form');
   const button = form.querySelector('button[type="submit"]');
@@ -817,6 +812,8 @@
   function sendData(data) {
   // const url = 'http://127.0.0.1:8000/v1/new-requests/';
   const backendUrl = "{{ env.BACKEND_URL }}"
+  console.log("backendURL:");
+  console.log(backendUrl);
 
   fetch(backendUrl, {
     method: 'POST',
