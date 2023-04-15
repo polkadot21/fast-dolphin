@@ -5,6 +5,8 @@ from fastapi.templating import Jinja2Templates
 from fastapi.middleware import Middleware
 from fastapi.middleware.cors import CORSMiddleware
 from constants import CorsConstants
+from dotenv import load_dotenv
+
 
 app = FastAPI()
 
@@ -20,6 +22,14 @@ app.add_middleware(
     allow_credentials=True,
 )
 
+
+# Load the environment variables from the .env file
+load_dotenv()
+
+# Define a global variable for the environment variables
+env = {
+    'BACKEND_URL': os.getenv('BACKEND_URL'),
+}
 
 @app.get("/", response_class=HTMLResponse)
 async def render_index(request: Request):
@@ -77,7 +87,7 @@ async def render_signup(request: Request):
 
 @app.get("/new-customer-request", response_class=HTMLResponse)
 async def render_customer_request(request: Request):
-    return templates.TemplateResponse("customer-request.html", {"request": request})
+    return templates.TemplateResponse("customer-request.html", {"request": request, "env": env})
 
 @app.get("/successfully-submitted", response_class=HTMLResponse)
 async def render_successfully_submitted(request: Request):
