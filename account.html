@@ -478,6 +478,17 @@
 
 <div id="markdown-container" class="center-text"></div>
   <script>
+
+    const backendUrl = "{{ env.BACKEND_URL }}"
+    const version = " {{ env.VERSION }}".trim()
+    const fullUrl = backendUrl + "/" + version + "/" + "users/";
+    console.log("backendURL:");
+    console.log(backendUrl);
+    console.log("version: ");
+    console.log(version);
+    console.log("full url:");
+    console.log(fullUrl);
+
     // Get the access token from local storage
     var accessToken = localStorage.getItem('access_token');
     // Define the Markdown text
@@ -497,14 +508,13 @@
     // Convert the Markdown text to HTML
     var htmlText = converter.makeHtml(markdownText);
 
-
-
     if (!accessToken) {
       // Redirect to login page if access token is not present in local storage
       window.location.href = '/login';
     } else {
+      let url = backendUrl + "/" + version + "/" + "users/";
       // Make a GET request to the /v1/users/ endpoint with the Authorization header
-      fetch('http://127.0.0.1:8000/v1/users/', {
+      fetch(url, {
         method: 'GET',
         headers: {
           'Accept': 'application/json',

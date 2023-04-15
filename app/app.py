@@ -5,6 +5,8 @@ from fastapi.templating import Jinja2Templates
 from fastapi.middleware import Middleware
 from fastapi.middleware.cors import CORSMiddleware
 from constants import CorsConstants
+from dotenv import load_dotenv
+import os
 
 app = FastAPI()
 
@@ -20,6 +22,15 @@ app.add_middleware(
     allow_credentials=True,
 )
 
+
+# Load the environment variables from the .env file
+load_dotenv()
+
+# Define a global variable for the environment variables
+env = {
+    'BACKEND_URL': os.getenv('BACKEND_URL'),
+    'VERSION': os.getenv('VERSION'),
+}
 
 @app.get("/", response_class=HTMLResponse)
 async def render_index(request: Request):
@@ -38,22 +49,22 @@ async def render_rules(request: Request):
 
 @app.get("/login", response_class=HTMLResponse)
 async def login(request: Request):
-    return templates.TemplateResponse("login.html", {"request": request})
+    return templates.TemplateResponse("login.html", {"request": request, "env": env})
 
 
 @app.get("/logout", response_class=HTMLResponse)
 async def render_account(request: Request):
-    return templates.TemplateResponse("logout.html", {"request": request})
+    return templates.TemplateResponse("logout.html", {"request": request, "env": env})
 
 
 @app.get("/account", response_class=HTMLResponse)
 async def render_account(request: Request):
-    return templates.TemplateResponse("account.html", {"request": request})
+    return templates.TemplateResponse("account.html", {"request": request, "env": env})
 
 
 @app.get("/training-plans", response_class=HTMLResponse)
 async def render_account(request: Request):
-    return templates.TemplateResponse("training-plans.html", {"request": request})
+    return templates.TemplateResponse("training-plans.html", {"request": request, "env": env})
 
 
 @app.get("/workout", response_class=HTMLResponse)
@@ -77,7 +88,7 @@ async def render_signup(request: Request):
 
 @app.get("/new-customer-request", response_class=HTMLResponse)
 async def render_customer_request(request: Request):
-    return templates.TemplateResponse("customer-request.html", {"request": request})
+    return templates.TemplateResponse("customer-request.html", {"request": request, "env": env})
 
 @app.get("/successfully-submitted", response_class=HTMLResponse)
 async def render_successfully_submitted(request: Request):
