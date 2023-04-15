@@ -1,4 +1,7 @@
 // Define the Markdown text
+const fullUrl =  backendUrl + "/" + version + "/" + "users/";
+console.log("full url:");
+console.log(fullUrl);
 var markdownText = '# Вы вышли из аккаунта\n\n' +
                     'Пока, <username>! ' +
                     '👋🏽\n\n' +
@@ -16,7 +19,7 @@ var htmlText = converter.makeHtml(markdownText);
 var accessToken = localStorage.getItem('access_token');
 
 if (accessToken) {
-  fetch('http://127.0.0.1:8000/v1/users/', {
+  fetch(fullUrl, {
     method: 'GET',
     headers: {
       'Accept': 'application/json',

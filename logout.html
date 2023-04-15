@@ -477,6 +477,11 @@
 </header>
 
   <div id="markdown-container" class="center-text"></div>
+  <script>
+    // Define a global variable with the environment variable value
+      const backendUrl = "{{ env.BACKEND_URL }}";
+      const version = "{{ env.VERSION }}".trim();
+  </script>
   <script src="static/js/logout.js"></script>
 
 <footer>
