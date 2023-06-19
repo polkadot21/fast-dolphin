@@ -21,9 +21,6 @@ RUN pip install --upgrade pip && \
 # Copy the application code and files
 COPY . /app/
 
-ENV BACKEND_URL=$BACKEND_URL
-ENV VERSION=$VERSION
-
 # Expose the port that the FastAPI app runs on
 EXPOSE 5050
 
